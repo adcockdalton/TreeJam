@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Backend for UCI-oriented goal visualization tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adcockdalton/TreeJam.git"
+  },
+  "keywords": [
+    "Data",
+    "Visualization",
+    "Gamification"
+  ],
+  "author": "Shayan Halder, Jasmine Wu, Steven Cao, Dalton Adcock",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adcockdalton/TreeJam/issues"
+  },
+  "homepage": "https://github.com/adcockdalton/TreeJam#readme"
+}
