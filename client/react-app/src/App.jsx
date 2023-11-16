@@ -1,5 +1,6 @@
 import react, { useState, useRef, useEffect } from 'react'
 import './App.css'
+import './index.css'
 import Habit from './components/Habit'
 import HabitList from './components/Habitlist'
 
