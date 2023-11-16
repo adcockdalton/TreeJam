@@ -3,6 +3,9 @@ import './App.css'
 import './index.css'
 import Habit from './components/Habit'
 import HabitList from './components/Habitlist'
+import SuggestionList from './components/SuggestionList'
+import UserStatsList from './components/UserStatsList'
+import ControlPanel from './components/ControlPanel'
 
 // fetch data from the user
 function GetDataTest() {
@@ -84,6 +87,34 @@ function App() {
 
   return (
     <>
+      <div className='LeftPanels'> 
+        <div className='SuggestionList'>      
+          <SuggestionList />
+        </div>
+
+        <div className='UserStats'>
+          <UserStatsList />
+        </div>
+
+      </div>
+
+      <div className="MiddleContainer">
+        <div className='TreeContainer'>
+          {/* tree SVG goes here */}
+        </div>
+
+        <div className='bottomPanelContainer'>
+          <ControlPanel /> 
+        </div>
+
+
+      </div>
+
+      <div>
+
+
+
+      </div>
       <HabitList currentHabitData={currentHabitData}/>
       {/* currentHabitData will be retrieved from MongoDB database, where all the user's habits (daily/weekly, etc...) are stored  */}
       <Habit/>
