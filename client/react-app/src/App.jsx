@@ -3,6 +3,8 @@ import './App.css'
 import Habit from './components/Habit'
 import HabitList from './components/Habitlist'
 import SuggestionList from './components/SuggestionList'
+import UserStatsList from './components/UserStatsList'
+import ControlPanel from './components/ControlPanel'
 
 // fetch data from the user
 function GetDataTest() {
@@ -89,14 +91,20 @@ function App() {
           <SuggestionList />
         </div>
 
-        <div className='YourStats'>
-
+        <div className='UserStats'>
+          <UserStatsList />
         </div>
 
       </div>
 
-      <div>
+      <div className="MiddleContainer">
+        <div className='TreeContainer'>
+          {/* tree SVG goes here */}
+        </div>
 
+        <div className='bottomPanelContainer'>
+          <ControlPanel /> 
+        </div>
 
 
       </div>
