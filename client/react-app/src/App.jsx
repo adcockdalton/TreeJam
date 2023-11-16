@@ -23,7 +23,8 @@ function GetDataTest() {
 
 //core of the user-facing interface
 function App() {
-  const [count, setCount] = useState(0)
+  const [showPanels, setShowPanels] = useState(true)
+  
   const currentHabitData = {
     "social":{
       "daily":[
@@ -80,19 +81,17 @@ function App() {
         }
       ]
     }
-    
-
   }
 
   return (
-    <>
+    <div className='rootAppContainer'>
       <div className='LeftPanels'> 
         <div className='SuggestionList'>      
           <SuggestionList />
         </div>
 
         <div className='UserStats'>
-          <UserStatsList />
+          <UserStatsList statsData={{'empty': 'for now'}}/>
         </div>
 
       </div>
@@ -103,21 +102,37 @@ function App() {
         </div>
 
         <div className='bottomPanelContainer'>
-          <ControlPanel /> 
+          <ControlPanel setShowPanels={setShowPanels} /> 
+        </div>
+      </div>
+
+      <div className='rightPanelContainer'>
+        <div className='ButtonContainer'>
+          <div className='ShrinkButtonContainer'>
+            <button>
+              {/* shrink button here */}
+            </button>
+          </div>
+          <div className='createHabitContainer'>
+            <div className='userProfile'>
+              {/* user profile icon goes here */}
+            </div>
+            <div className='createHabitButton'>
+              <button>
+                {/* create user button goes here */}
+              </button>
+            </div>
+          </div>
         </div>
 
-
+        <div className='HabitList'>
+          <HabitList currentHabitData={currentHabitData}/>
+          {/* currentHabitData will be retrieved from MongoDB database, where all the user's habits (daily/weekly, etc...) are stored  */}
+          <Habit/>
+        </div>
       </div>
-
-      <div>
-
-
-
-      </div>
-      <HabitList currentHabitData={currentHabitData}/>
-      {/* currentHabitData will be retrieved from MongoDB database, where all the user's habits (daily/weekly, etc...) are stored  */}
-      <Habit/>
-    </>
+      
+    </div>
   )
 }
 

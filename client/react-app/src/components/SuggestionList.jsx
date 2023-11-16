@@ -6,15 +6,15 @@ export default function SuggestionList( { formattedSuggestions } ) {
 
     // this is dummy data for how the AI generated suggestions look like 
     const dummySuggestionData = {
-        'social': {
+        social: {
             'suggestionDescription' : 'hang out with friends'
         },
 
-        'academic': {
+        academic: {
             'suggestionDescription' : 'study for ics 6b'
         },
         
-        'personal': {
+        personal: {
             'suggestionDescription' : 'do yoga and meditate'
         }
 
@@ -22,9 +22,9 @@ export default function SuggestionList( { formattedSuggestions } ) {
 
     return (
         <>  
-            <Suggestion habitType='Social' suggestionDescription={formattedSuggestions['social']['suggestionDescription']} />
-            <Suggestion habitType='Academic' suggestionDescription={formattedSuggestions['academic']['suggestionDescription']} />
-            <Suggestion habitType='Personal' suggestionDescription={formattedSuggestions['personal']['suggestionDescription']} />
+            <Suggestion habitType="Social" suggestionDescription={dummySuggestionData['social']['suggestionDescription']} />
+            <Suggestion habitType="Academic" suggestionDescription={dummySuggestionData['academic']['suggestionDescription']} />
+            <Suggestion habitType="Personal" suggestionDescription={dummySuggestionData['personal']['suggestionDescription']} />
         </>
     );
 }

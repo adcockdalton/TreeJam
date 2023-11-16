@@ -1,24 +1,24 @@
 import react, {useState} from 'react'
 import ControlPanelButton from './ControlPanelButton'
 
-export default function ControlPanel( { filterHabitList } ) {
+export default function ControlPanel( { setShowPanels } ) {
 
     return (
         <div>
             <div className='controlPanelButtonContainer'>
-                <ControlPanelButton habitType='social' color='bluePanelButton' icon='' filterHabitList={filterHabitList}/>
+                <ControlPanelButton habitType='social' color='bluePanelButton' icon='' setShowPanels={setShowPanels}/>
             </div>
 
             <div className='controlPanelButtonContainer'>
-                <ControlPanelButton habitType='academic' color='greenPanelButton' icon='' filterHabitList={filterHabitList}/>
+                <ControlPanelButton habitType='academic' color='greenPanelButton' icon='' setShowPanels={setShowPanels}/>
             </div>
 
             <div className='controlPanelButtonContainer'>
-                <ControlPanelButton habitType='personal' color='redPanelButton' icon='' filterHabitList={filterHabitList}/>
+                <ControlPanelButton habitType='personal' color='redPanelButton' icon='' setShowPanels={setShowPanels}/>
             </div>
 
             <div className='controlPanelButtonContainer'>
-                <ControlPanelButton habitType='all' color='grayPanelButton' icon='' filterHabitList={filterHabitList}/>
+                <ControlPanelButton habitType='all' color='grayPanelButton' icon='' setShowPanels={setShowPanels}/>
             </div>
         </div>
     );
