@@ -2,9 +2,11 @@
 
 const PORT = 3001
 const mongoose = require('mongoose')
+const cors = require('cors')
 const express = require('express')
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 
 // load mongoose schema models
@@ -38,4 +40,8 @@ app.get("/current-habits", async (req, res) => {
 
 app.listen(PORT, () => {
     console.log('server running')
+})
+
+app.get("/test", (req, res) => {
+    res.json({message: "Hello World!"})
 })
