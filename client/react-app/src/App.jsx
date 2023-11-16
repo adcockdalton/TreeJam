@@ -2,6 +2,7 @@ import react, { useState, useRef, useEffect } from 'react'
 import './App.css'
 import Habit from './components/Habit'
 import HabitList from './components/Habitlist'
+import SuggestionList from './components/SuggestionList'
 
 // fetch data from the user
 function GetDataTest() {
@@ -83,6 +84,28 @@ function App() {
 
   return (
     <>
+      <div className='LeftPanels'> 
+        <div className='SuggestionList'>      
+          <SuggestionList />
+        </div>
+
+        <div className='YourStats'>
+
+        </div>
+
+      </div>
+
+      <div>
+
+
+
+      </div>
+
+      <div>
+
+
+
+      </div>
       <HabitList currentHabitData={currentHabitData}/>
       {/* currentHabitData will be retrieved from MongoDB database, where all the user's habits (daily/weekly, etc...) are stored  */}
       <Habit/>
