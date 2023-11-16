@@ -1,7 +1,7 @@
 import react, { useState, useRef, useEffect } from 'react'
 import './App.css'
 import Habit from './components/Habit'
-import Habitlist from './components/Habitlist'
+import HabitList from './components/Habitlist'
 
 // fetch data from the user
 function GetDataTest() {
@@ -21,6 +21,65 @@ function GetDataTest() {
 //core of the user-facing interface
 function App() {
   const [count, setCount] = useState(0)
+  const currentHabitData = {
+    "social":{
+      "daily":[
+        {
+          "title":"hang out with jake",
+          "description":"socializing is fun"
+        },
+        {
+          "title":"text friends",
+          "description":"texting is fun"
+        }
+        ],
+      "weekly":[
+        {
+          "title":"call grandparents",
+          "description":"catch up is nice",
+          "day":"Tuesday"
+        }
+      ]
+    },
+
+    "academic":{
+      "daily":[
+        {
+          "title":"study for 6b",
+          "description":"do the readings"
+        }
+        ],
+      "weekly":[
+        {
+          "title":"review spanish",
+          "description":"need to stay fluent",
+          "day":"Wednesday"
+        }
+      ]
+    },
+
+    "personal":{
+      "daily":[
+        {
+          "title":"hang out with jake",
+          "description":"socializing is fun"
+        },
+        {
+          "title":"text friends",
+          "description":"texting is fun"
+        }
+        ],
+      "weekly":[
+        {
+          "title":"call grandparents",
+          "description":"catch up is nice",
+          "day":"Wednesday"
+        }
+      ]
+    }
+    
+
+  }
 
   return (
     <>

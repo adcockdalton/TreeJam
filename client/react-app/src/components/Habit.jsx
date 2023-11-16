@@ -1,9 +1,9 @@
 import react, {useState} from 'react'
 
 function Habit({propTitle, propFrequency, propDescription, setCurrentHabits }) {
-    const [title, setTitle] = useState(title)
-    const [frequency, setFrequency] = useState(frequency)
-    const [description, setDescription] = useState(description)
+    const [title, setTitle] = useState(propTitle)
+    const [frequency, setFrequency] = useState(propFrequency)
+    const [description, setDescription] = useState(propDescription)
     const [editMode, setEditMode] = useState(false) // controls whether the pop-up modal for editing the tasks in the list is being displayed currently or not
   
     return (
@@ -16,10 +16,10 @@ function Habit({propTitle, propFrequency, propDescription, setCurrentHabits }) {
         <div> 
           {/* div containing the task name and frequency */}
             <h1>
-              {title}
+              {propTitle}
             </h1>
             <div>
-              {frequency} 
+              {propFrequency} 
               {/* formatted in the tag-like display with css */}
             </div>
         </div>
