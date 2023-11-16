@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const currentHabits = new mongoose.Schema({
+const currentHabitsSchema = new mongoose.Schema({
     social: {
         daily: Array,
         weekly: Array
@@ -16,5 +16,4 @@ const currentHabits = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('currentHabits', currentHabits)
-
+module.exports = mongoose.model('currentHabits', currentHabitsSchema, 'currentHabits')
