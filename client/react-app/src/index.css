@@ -27,10 +27,10 @@
 
 body, html {
   margin: 0;
-  display: grid;
-  place-items: center;
-  min-height: 100vh;
+  overflow: hidden;
+  height: 100vh;
   background: #8AD5FF;
+  cursor: auto;
 }
 
 /* typography */
@@ -43,7 +43,7 @@ body, html {
 }
 
 p {
-  font-size: 1em;
+  font-size: 1.15em;
   line-height: 1.5;
   color: var(--textColor);
   margin: 0;
@@ -51,7 +51,7 @@ p {
 }
 /* use for habit titles */
 .sub-title {
-  font-size: 1.2em;
+  font-size: 1.4em;
   font-weight: 600;
   margin: 0;
 }
@@ -112,6 +112,9 @@ input[type = "checkbox"].checkBox:hover{
   cursor: pointer;
   transform: translate(4px, 4px);
   box-shadow: none;
+}
+.controlPanel img {
+  max-width: 50px;
 }
 
 /* main category buttons */
@@ -196,7 +199,7 @@ input[type = "checkbox"].checkBox:hover{
   justify-content: center;
   padding: 24px;
   background-color: #ffffff;
-  height: 100vh;
+  height: 60vh;
   overflow: scroll;
 }
 
@@ -243,7 +246,34 @@ input[type = "checkbox"].checkBox:hover{
   background-color: #ffffff;
 }
 .userProfile {
+  background-color: white;
+  border: 4px solid var(--lightGray);
+  border-radius: 100px;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  transition: background-color 200ms;
+  cursor: pointer;
+}
+.userProfile img {
+  max-width: 40px;
+}
+.userProfile:hover {
+  background-color: var(--gray);
+}
+.createHabitButton {
   background-color: var(--blue);
   border-radius: 100px;
   padding: 10px;
+  width: 40px;
+  height: 40px;
+  transition: background-color 200ms;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 40px;
+  display: grid;
+  place-content: center;
+}
+.createHabitButton:hover {
+  background-color: var(--blueLight);
 }

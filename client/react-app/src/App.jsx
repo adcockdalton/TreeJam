@@ -8,6 +8,8 @@ import UserStatsList from './components/UserStatsList';
 import ControlPanel from './components/ControlPanel';
 import deadTree from './images/deadTree.svg';
 import TextGenerator from './components/TextGenerator';
+import anteater from './images/anteater-removebg-preview.png'
+
 
 // fetch data from the user
 function GetDataTest() {
@@ -111,10 +113,13 @@ function App() {
 
           {/* top right navigation panel */}
           <div className='createHabitContainer'>
+
             <div className='userProfile'>
-              <img src="academics.png"/>
+              <img src= {anteater}/>
             </div>
+
             <div className='createHabitButton'>
+              +
             </div>
           </div>
 

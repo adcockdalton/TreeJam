@@ -1,12 +1,12 @@
 import react, {useState} from 'react'
 
-export default function Suggestion( {habitType, suggestionDescription } ) {
+export default function Suggestion( {habitType, icon, suggestionDescription } ) {
 
     return (
 
         <div className='suggestionRoot'>
             <div className='suggestionIcon'>
-                {/* icon for the social/academic/personal suggestion goes here  */}
+                <img src="{icon}"/>
             </div>
 
             <div className='suggestionContainer'>
