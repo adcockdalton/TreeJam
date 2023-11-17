@@ -67,19 +67,6 @@ async function fetchSummary(text) {
     return ''; // or a default error message
   }
 }
-// Function to call your API endpoint
-// async function fetchSummary(text) {
-//   try {
-//     // const response = await axios.post('/summarize-text', { prompt: text });
-//     const response = await axios.post('http://localhost:3001/summarize-text', { prompt: text });
-
-//     console.log(response)
-//     return response.data.response;
-//   } catch (error) {
-//     console.error('Error fetching summary:', error);
-//     return ''; // or a default error message
-//   }
-// }
 
 //core of the user-facing interface
 function App() {
@@ -172,16 +159,41 @@ function App() {
 });
 
 useEffect(() => {
-  const textToSummarize = 'Summarize the user recent activity: Ashley studied 3 hours for the ics 6b exam, did 2 reps of yoga stretching, and went to a party with friends.';
-  fetchSummary(textToSummarize).then(fetchedSummary => {
-      console.log("Fetched Summary:", fetchedSummary); // Debug log
-      setSuggestions(prev => {
-          const updatedSuggestions = { ...prev, personal: { 'suggestionDescription': fetchedSummary } };
-          console.log("Updated Suggestions:", updatedSuggestions); // Debug log
-          return updatedSuggestions;
-      });
+  // Define your texts to summarize
+  const academicText = 'Summarize academic activities (in 30-40 characters): Ashley studied 3 hours for the ics 6b exam. Got 68% on the test unfortunately.';
+  const socialText = 'Summarize social activities (in 30-40 characters): Ashley did 10 reps of yoga stretching. Beat her PR of 8 reps.';
+  const personalText = 'Summarize personal activities (in 30-40 characters): Ashley went to a part of 30 with her friends. Talked to 15 people.';
+  
+  // Fetch and set the academic summary
+  fetchSummary(academicText).then(academicSummary => {
+    console.log("Fetched Summary:", academicSummary); // Debug log
+    setSuggestions(prev => ({ ...prev, academic: { 'suggestionDescription': academicSummary } }));
+  });
+
+  // Fetch and set the social summary
+  fetchSummary(socialText).then(socialSummary => {
+    console.log("Fetched Summary:", socialSummary); // Debug log
+    setSuggestions(prev => ({ ...prev, social: { 'suggestionDescription': socialSummary } }));
+  });
+
+  // Fetch and set the personal summary
+  fetchSummary(personalText).then(personalSummary => {
+    console.log("Fetched Summary:", personalSummary); // Debug log
+    setSuggestions(prev => ({ ...prev, personal: { 'suggestionDescription': personalSummary } }));
   });
 }, []);
+
+//code for changing only personal
+//   const textToSummarize = 'Summarize the user recent activity: Ashley studied 3 hours for the ics 6b exam, did 2 reps of yoga stretching, and went to a party with friends.';
+//   fetchSummary(textToSummarize).then(fetchedSummary => {
+//       console.log("Fetched Summary:", fetchedSummary); // Debug log
+//       setSuggestions(prev => {
+//           const updatedSuggestions = { ...prev, personal: { 'suggestionDescription': fetchedSummary } };
+//           console.log("Updated Suggestions:", updatedSuggestions); // Debug log
+//           return updatedSuggestions;
+//       });
+//   });
+// }, []);
 
   async function addHabit(event) {
     event.preventDefault();
