@@ -38,6 +38,60 @@ app.get("/current-habits", async (req, res) => {
     }
 })
 
+app.put("/add-habit", async (req, res) => {
+    const newData = req.body
+
+    try {
+        const existingData = await currentHabits.findOne({})
+
+        if (!existingData) {
+            return res.status(404).json({ error: 'Data not found' })
+        }
+
+        const elementToAdd = {
+            title: newData.title,
+            description: newData.description
+        }
+
+        if (newData.frequency === "weekly") {
+            const d = new Date()
+            let day = d.getDay()
+
+            switch(day) {
+                case 0:
+                    elementToAdd.day = "Sunday"
+                case 1:
+                    elementToAdd.day = "Monday"
+                case 2:
+                    elementToAdd.day = "Tuesday"
+                case 3:
+                    elementToAdd.day = "Wednesday"
+                case 4:
+                    elementToAdd.day = "Thursday"
+                case 5:
+                    elementToAdd.day = "Friday"
+                case 6:
+                    elementToAdd.day = "Saturday"
+            }
+        }
+        
+        if (newData.habitType === "social") {
+            existingData.social.push(elementToAdd)
+        } else if (newData.habitType === "academic") {
+            existingData.academic.push(elementToAdd)
+        } else if (newData.habitType === "personal") {
+            existingData.personal.push(elementToAdd)
+        }
+
+        const updatedData = await existingData.save()
+
+        res.json(updatedData)
+    } catch (error) {
+        console.error('Error pushing elements to the nested array in MongoDB:', error.message)
+        res.status(500).json({ error: 'Internal Server Error' })
+    }
+})
+
 app.listen(PORT, () => {
     console.log('server running')
 })
