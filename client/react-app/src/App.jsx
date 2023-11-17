@@ -274,11 +274,10 @@ useEffect(() => {
                   
                   <div className='modalContent'>
                     <div className="topModalContain">
-                        <div className='Title'>Add a new habit</div>
-                        <div className='close' onClick={() => {onClose();}}>
+                        <div className='Title'>Create your account</div>
+                        <div className='close' onClick={onClose}>
                           X
                         </div>
-                        
                     </div>
                     
                     <div className='modalBody'>
@@ -342,13 +341,14 @@ useEffect(() => {
                      </div>
                   </div>
                   <div className="overlay"></div>
-
                 </Modal>
 
             </div>
-            {/* //profile modo */}
-            <div className='createHabitButton' onClick={onOpen}>
-                +  
+
+          </div>
+                      {/* //profile modo */}
+            {/* <div className='createHabitButton' onClick={onOpen}> */}
+            {/* +  
                 <Modal initialFocusRef={initialModalRef} finalFocusRef={finalModalRef} isOpen={isOpen} onClose={onClose}>
                   
                   <div className='modalContent'>
@@ -380,10 +380,9 @@ useEffect(() => {
                   </div>
                   </div>
                   <div className="overlay"></div>
-                </Modal>
+                </Modal> */}
 
-            </div>
-          </div>
+            {/* </div> */}
 
       
       { // only render habit list if we got our habit data 
