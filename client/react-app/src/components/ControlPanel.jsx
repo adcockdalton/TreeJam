@@ -1,5 +1,6 @@
-import react, {useState} from 'react'
-import ControlPanelButton from './ControlPanelButton'
+import react, {useState} from 'react';
+import ControlPanelButton from './ControlPanelButton';
+
 
 export default function ControlPanel( { setShowPanels } ) {
 
