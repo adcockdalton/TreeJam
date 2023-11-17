@@ -7,6 +7,7 @@ import SuggestionList from './components/SuggestionList';
 import UserStatsList from './components/UserStatsList';
 import ControlPanel from './components/ControlPanel';
 import deadTree from './images/deadTree.svg';
+import aliveTree from './images/aliveTree.svg';
 import TextGenerator from './components/TextGenerator';
 import anteater from './images/anteater-removebg-preview.png'
 import settings from './images/settings.png'
@@ -242,10 +243,7 @@ useEffect(() => {
 
       {/* center panel */}
       <div className="centerPanel">
-          <div className='TreeContainer'>  
-            <img src= {deadTree} />
-          </div>
-
+          {currentHabits ? (<div className='TreeContainer'> <img src= {aliveTree} /> </div>) : (<div className='TreeContainer'> <img src= {deadTree} /> </div>)}
           <div className='bottomPanelContainer'> 
             <ControlPanel setShowPanels={setShowPanels}/> 
           </div>
