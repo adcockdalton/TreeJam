@@ -1,11 +1,12 @@
-import react, { useState, useRef, useEffect } from 'react'
-import './App.css'
-import './index.css'
-import Habit from './components/Habit'
-import HabitList from './components/Habitlist'
-import SuggestionList from './components/SuggestionList'
-import UserStatsList from './components/UserStatsList'
-import ControlPanel from './components/ControlPanel'
+import React, { useState, useRef, useEffect } from 'react';
+import './App.css';
+import './index.css';
+import Habit from './components/Habit';
+import HabitList from './components/Habitlist';
+import SuggestionList from './components/SuggestionList';
+import UserStatsList from './components/UserStatsList';
+import ControlPanel from './components/ControlPanel';
+import TextGenerator from './components/TextGenerator';
 
 // fetch data from the user
 function GetDataTest() {
@@ -90,7 +91,6 @@ function App() {
       <div className='TreeContainer'>  </div>
       <div className='ButtonContainer'>
           <div className='ShrinkButtonContainer'>
-            
           </div>
 
           <div className='createHabitContainer'>
