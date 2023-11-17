@@ -1,5 +1,16 @@
 {
   "dependencies": {
     "cross-env": "^7.0.3"
-  }
+  },
+  "name": "treejam",
+  "description": "2023 UC, Irvine WebJam goal visualization tool; S. Halder, J. Wu, S. Cao, D. Adcock",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

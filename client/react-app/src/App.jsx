@@ -87,8 +87,12 @@ function App() {
 
   return (
     <div className='rootAppContainer'>
-      <div className='SuggestionList'> <SuggestionList /> </div>
       
+      <div className='SuggestionList'> 
+        <SuggestionList /> 
+      </div>
+
+      {/* center panel */}
       <div className="centerPanel">
           <div className='TreeContainer'>  
             <img src= {deadTree} />

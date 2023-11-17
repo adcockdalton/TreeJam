@@ -12,7 +12,7 @@ export default function ControlPanel( { habitType, color, icon, setShowPanels } 
             habit type (ex: 'academic') and then change global state, causing 
             only certain habit types to be displayed  */}
             
-                <img src=""/>
+                <img src={icon}/>
             </button>
         </div>
     );

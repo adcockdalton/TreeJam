@@ -1,13 +1,13 @@
 import react, {useState} from 'react';
 import ControlPanelButton from './ControlPanelButton';
-
+import academics from './images/academics.png'
 
 export default function ControlPanel( { setShowPanels } ) {
 
     return (
         <div className='controlPanelContainer'>
             <div className='controlPanelButtonContainer'>
-                <ControlPanelButton habitType='social' color='bluePanelButton' icon='' setShowPanels={setShowPanels}/>
+                <ControlPanelButton habitType='social' color='bluePanelButton' icon='academics' setShowPanels={setShowPanels}/>
             </div>
 
             <div className='controlPanelButtonContainer'>
