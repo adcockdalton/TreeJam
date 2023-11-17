@@ -182,8 +182,8 @@ function App() {
       
       {/* right panel */}
       <div className='ButtonContainer'>
-          <div className='ShrinkButtonContainer'>
-          </div>
+          
+
 
           {/* top right navigation panel */}
           <div className='createHabitContainer'>
