@@ -13,7 +13,6 @@ app.use(express.json())
 const completedHabits = require('./models/completedHabits')
 const currentHabits = require('./models/currentHabits')
 
-
 // connect to databse
 mongoose.connect('mongodb+srv://shalder:rishi1105@treejam.p584kjj.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true
@@ -44,20 +43,19 @@ app.put("/add-habit", async (req, res) => {
     const newData = req.body
 
     try {
-        const existingData = await currentHabits.findOne({})
-
+        let existingData = await currentHabits.findOne()
         if (!existingData) {
             return res.status(404).json({ error: 'Data not found' })
         }
 
         const elementToAdd = {
-            title: newData.title,
-            description: newData.description
+            title: newData['title'],
+            description: newData['description']
         }
 
-        if (newData.frequency === "weekly") {
+        if (newData['frequency'] === "weekly") {
             const d = new Date()
-            let day = d.getDay()
+            const day = d.getDay()
 
             switch(day) {
                 case 0:
@@ -83,15 +81,11 @@ app.put("/add-habit", async (req, res) => {
                     break
             }
         }
+        const newHabitType = newData['habitType']
+        const newFrequency = newData['frequency']
         
-        if (newData.habitType === "social") {
-            existingData.social.push(elementToAdd)
-        } else if (newData.habitType === "academic") {
-            existingData.academic.push(elementToAdd)
-        } else if (newData.habitType === "personal") {
-            existingData.personal.push(elementToAdd)
-        }
-
+        // add new habit
+        existingData[newHabitType][newFrequency].push(elementToAdd)
         const updatedData = await existingData.save()
 
         res.json(updatedData)

@@ -1,0 +1,85 @@
+input[type = "checkbox"] {
+  content: '';
+  border-radius: 40px;
+  border: 2px solid var(--gray);
+  transition: border-color 200ms;
+  padding: 5px;
+  height: 28px;
+  width: 28px;
+  position: absolute;
+
+}
+.checkBox {
+  content: '';
+  border-radius: 40px;
+  border: 2px solid var(--gray);
+  transition: border-color 200ms;
+  padding: 5px;
+  height: 28px;
+  width: 28px;
+  position: absolute;
+}
+
+.checkBox:hover{
+  border-color: var(--blue);
+  background-color: var(--blueHover);
+  cursor: pointer;
+}
+
+.rootAppContainer {
+  display: grid;
+  grid-template: 
+    'suggestion tree tree tree buttonContainer'
+    'suggestion tree tree tree habitList'
+    'suggestion tree tree tree habitList'
+    'suggestion tree tree tree habitList'
+    'suggestion tree tree tree habitList'
+    'userStats bottomPanel bottomPanel bottomPanel habitList'
+    'userStats bottomPanel bottomPanel bottomPanel habitList';
+  width: 100%;
+  height: 100vh;
+  grid-gap: 10px;
+  padding: 5px;
+
+
+}
+
+.SuggestionList {
+  grid-area: suggestion;
+  border: 2px solid black;
+}
+
+.UserStats {
+  grid-area: userStats;
+  border: 2px solid red;
+}
+
+.TreeContainer {
+  grid-area: tree;
+  border: 2px solid green;
+
+}
+
+.bottomPanelContainer {
+  grid-area: bottomPanel;
+  border: 2px solid blue;
+
+}
+
+.ButtonContainer {
+  grid-area: buttonContainer;
+  border: 2px solid yellow;
+
+}
+
+.HabitList {
+  grid-area: habitList;
+  border: 2px solid orange;
+
+}
+
+/* 
+
+
+
+*/

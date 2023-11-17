@@ -86,60 +86,25 @@ function App() {
 
   return (
     <div className='rootAppContainer'>
-      <div className='LeftPanels'> 
-        <div className='SuggestionList'>
-          <SuggestionList />
-        </div>
-
-        <div className='UserStats'>
-          <UserStatsList statsData={{'empty': 'for now'}}/>
-        </div>
-
-      </div>
-
-      <div className="MiddleContainer">
-        <div className='TreeContainer'>
-          {/* tree SVG goes here */}
-        </div>
-
-        <div className='bottomPanelContainer'>
-          <ControlPanel setShowPanels={setShowPanels} /> 
-        </div>
-      </div>
-
-      <div className='rightPanelContainer'>
-        {/* top of the right panel */}
-        <div className='ButtonContainer'>
-
+      <div className='SuggestionList'> <SuggestionList /> </div>
+      <div className='TreeContainer'>  </div>
+      <div className='ButtonContainer'>
           <div className='ShrinkButtonContainer'>
-            <button>
-              {/* shrink button here */}
-            </button>
+            
           </div>
 
           <div className='createHabitContainer'>
             <div className='userProfile'>
-              {/* user profile icon goes here */}
             </div>
             <div className='createHabitButton'>
-              <button>
-                {/* create user button goes here */}
-              </button>
             </div>
           </div>
-
-        </div>
-
-        {/* bottom of right panel */}
-        <div className='HabitList'>
-          <HabitList currentHabitData={currentHabitData}/>
-          {/* currentHabitData will be retrieved from MongoDB database, where all the user's habits (daily/weekly, etc...) are stored  */}
-          
-          <Habit/>
-        </div>
-      </div>
-      
+      <div className='UserStats'> <UserStatsList statsData={{'empty': 'for now'}}/></div>
+      <div className='bottomPanelContainer'> <ControlPanel setShowPanels={setShowPanels}/> </div>
+      <div className='HabitList'> <HabitList currentHabitData={currentHabitData}/> </div>
     </div>
+    </div>
+      
   )
 }
 
