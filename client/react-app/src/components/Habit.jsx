@@ -9,19 +9,27 @@ function Habit({propTitle, propFrequency, propDescription, setCurrentHabits }) {
     return (
       <>
         <div className='Habit'>
-            <input type="checkbox" className='checkBox'/>
+          <div className="checkBox">
+            <input type="checkbox"/>
+            <span className='checkmark'></span>
+          </div>
+            
           {/* check box for checking off if the task was completed */}
         
             
             {/* div containing the task name and frequency */}
-                <div className='sub-title'>
-                    {propTitle}
-                </div>
+                <div className="habitTextContain">
+                  <div className='sub-title'>
+                      {propTitle}
+                  </div>
 
-                <div>
-                {propFrequency} 
-                {/* formatted in the tag-like display with css */}
+                  <div className='tag'>
+                    weekly
+                    {propFrequency} 
+                    {/* formatted in the tag-like display with css */}
+                  </div>
                 </div>
+                
           
         </div>
             
