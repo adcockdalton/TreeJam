@@ -9,6 +9,20 @@ import deadTree from './images/deadTree.svg';
 import TextGenerator from './components/TextGenerator';
 import anteater from './images/anteater-removebg-preview.png'
 import settings from './images/settings.png'
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  FormControl, 
+  FormLabel,
+  Button,
+  Input
+} from '@chakra-ui/react'
 
 
 // fetch data from the user
@@ -26,10 +40,23 @@ function GetDataTest() {
   )
 }
 
+
+
+
 //core of the user-facing interface
 function App() {
   const [showPanels, setShowPanels] = useState(true)
   const [currentHabits, setCurrentHabits] = useState()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const initialModalRef = useRef(null)
+  const finalModalRef = useRef(null)
+
+  const habitNameRef = useRef(null)
+  const habitTypeRef = useRef(null)
+  const habitFrequencyRef = useRef(null)
+  const habitDescriptionRef = useRef(null)
+
 
   useEffect(() => { // call database to get current habits and store in state on first render
     async function getHabits() {
@@ -45,6 +72,34 @@ function App() {
     getHabits()
 
   }, [])
+
+  async function addHabit(event) {
+    event.preventDefault();
+    const newHabitName = habitNameRef.current.value
+    const newHabitType = habitTypeRef.current.value
+    const newHabitFrequency = habitFrequencyRef.current.value
+    const newHabitDescription = habitDescriptionRef.current.value
+
+    const requestBody = JSON.stringify({
+      'title': newHabitName,
+      'habitType': newHabitType,
+      'frequency': newHabitFrequency,
+      'description': newHabitDescription
+    })
+
+    let myHeaders = new Headers()
+    myHeaders.append("Content-Type", "application/json")
+    const requestOptions = {
+      method: 'PUT',
+      headers: myHeaders,
+      body: requestBody
+    }
+    const response = await fetch('http://localhost:3001/add-habit', requestOptions) 
+    const data = await response.json()
+    console.log(data)
+    setCurrentHabits(data)
+    alert('submitted!')
+  }
 
   return (
     <div className='rootAppContainer'>
@@ -76,8 +131,57 @@ function App() {
               <img src= {anteater}/>
             </div>
 
-            <div className='createHabitButton'>
+            <div className='createHabitButton' onClick={onOpen}>
                 +  
+                <Modal initialFocusRef={initialModalRef} finalFocusRef={finalModalRef} isOpen={isOpen} onClose={onClose}>
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalHeader>Create your account</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody pb={6}>
+                      <form id='new-habit-form'
+                        onSubmit={addHabit}>
+
+                        <FormControl>
+                          <FormLabel>Habit Name</FormLabel>
+                          <Input ref={habitNameRef} placeholder='Habit name' />
+                        </FormControl>
+
+                        <FormControl>
+                          <FormLabel>Habit Type</FormLabel>
+                          <select ref={habitTypeRef}>
+                            <option>social</option>
+                            <option>academic</option>
+                            <option>personal</option>
+                          </select>
+                        </FormControl>
+
+                        <FormControl mt={4}>
+                          <FormLabel>Frequency</FormLabel>
+                          <select ref={habitFrequencyRef}>
+                            <option>daily</option>
+                            <option>weekly</option>
+                          </select>
+                        </FormControl>
+
+                        <FormControl mt={4}>
+                          <FormLabel>Description</FormLabel>
+                          <Input ref={habitDescriptionRef} placeholder='Description' />
+                        </FormControl>
+
+                      </form>
+                    
+                     </ModalBody>
+
+                    <ModalFooter>
+                      <Button type="submit" form="new-habit-form" colorScheme='blue' mr={3}>
+                        Save
+                      </Button>
+                      <Button onClick={onClose}>Cancel</Button>
+                    </ModalFooter>
+                  </ModalContent>
+                </Modal>
+
             </div>
           </div>
 
