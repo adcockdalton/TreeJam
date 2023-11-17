@@ -6,6 +6,7 @@ import HabitList from './components/Habitlist'
 import SuggestionList from './components/SuggestionList'
 import UserStatsList from './components/UserStatsList'
 import ControlPanel from './components/ControlPanel'
+import deadTree from './images/deadTree.svg'
 
 // fetch data from the user
 function GetDataTest() {
@@ -87,20 +88,35 @@ function App() {
   return (
     <div className='rootAppContainer'>
       <div className='SuggestionList'> <SuggestionList /> </div>
-      <div className='TreeContainer'>  </div>
+      
+      <div className="centerPanel">
+          <div className='TreeContainer'>  
+            <img src= {deadTree} />
+          </div>
+
+          <div className='bottomPanelContainer'> 
+            <ControlPanel setShowPanels={setShowPanels}/> 
+          </div>
+      </div>
+      
+      {/* right panel */}
       <div className='ButtonContainer'>
           <div className='ShrinkButtonContainer'>
             
           </div>
 
+          {/* top right navigation panel */}
           <div className='createHabitContainer'>
             <div className='userProfile'>
+              <img src="academics.png"/>
             </div>
             <div className='createHabitButton'>
             </div>
           </div>
-      <div className='UserStats'> <UserStatsList statsData={{'empty': 'for now'}}/></div>
-      <div className='bottomPanelContainer'> <ControlPanel setShowPanels={setShowPanels}/> </div>
+
+      <div className='UserStats'> 
+        <UserStatsList statsData={{'empty': 'for now'}}/>
+      </div>
       <div className='HabitList'> <HabitList currentHabitData={currentHabitData}/> </div>
     </div>
     </div>

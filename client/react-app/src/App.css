@@ -1,14 +1,4 @@
-input[type = "checkbox"] {
-  content: '';
-  border-radius: 40px;
-  border: 2px solid var(--gray);
-  transition: border-color 200ms;
-  padding: 5px;
-  height: 28px;
-  width: 28px;
-  position: absolute;
 
-}
 .checkBox {
   content: '';
   border-radius: 40px;
@@ -46,35 +36,35 @@ input[type = "checkbox"] {
 
 .SuggestionList {
   grid-area: suggestion;
-  border: 2px solid black;
+  /* border: 2px solid black; */
 }
 
 .UserStats {
   grid-area: userStats;
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 
 .TreeContainer {
   grid-area: tree;
-  border: 2px solid green;
+  /* border: 2px solid green; */
 
 }
 
 .bottomPanelContainer {
   grid-area: bottomPanel;
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
 
 }
 
 .ButtonContainer {
   grid-area: buttonContainer;
-  border: 2px solid yellow;
+  /* border: 2px solid yellow; */
 
 }
 
 .HabitList {
   grid-area: habitList;
-  border: 2px solid orange;
+  /* border: 2px solid orange; */
 
 }
 

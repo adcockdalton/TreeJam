@@ -10,11 +10,16 @@
   /* use cases are included in figma doc */
   --red: #FF7878;
   --redAlt: #D24141;
+  --redLight: #FF9696;
+
   --blue: #78C6FF;
   --blueAlt: #4D94C8;
+  --blueLight: #A2D8FF;
   --blueHover: #DDF1FF;
+
   --green: #89D27D;
   --greenAlt: #4EB73D;
+  --greenLight: #9FE394;
   --lightGray: #EAEAEA;
   --gray: #B7B7B7;
   --darkGray: #808080;
@@ -75,10 +80,10 @@ input[type = "checkbox"].checkBox:hover{
 .Habit {
   /* flex-direction: row;
   display: flex;
-  align-items: center;
-  justify-content: center; */
+  align-items: center; */
+  justify-content: center;
   display: grid;
-  grid-auto-flow: row;  
+  grid-auto-flow: column;  
   justify-content: space-around;
   grid-gap: 20px;
   align-items: flex-start;
@@ -87,11 +92,13 @@ input[type = "checkbox"].checkBox:hover{
   padding: 28px;
   box-shadow: 4px 4px  var(--lightGray);
   position: relative;
+  align-items: center;
 }
 
 .Habit .sub-title {
-  
+  position: relative;
 }
+
 
 .controlPanel button{
   border-radius: 5000px;
@@ -99,14 +106,59 @@ input[type = "checkbox"].checkBox:hover{
   width: 80px;
   height: 80px;
   outline: none;
+  border: none;
 }
-.bluePanelButton {
+.controlPanel button:hover {
+  cursor: pointer;
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+/* main category buttons */
+.bluePanelButton button{
   background-color: var(--blue);
+  box-shadow: 4px 6px var(--blueAlt);
+  transition: background-color 100ms;
 }
+
+.bluePanelButton button:hover {
+  background-color: var(--blueLight);
+}
+
+
+.greenPanelButton button {
+  background-color: var(--green);
+  box-shadow: 4px 6px var(--greenAlt);
+  
+}
+.greenPanelButton button:hover {
+  background-color: var(--greenLight);
+}
+
+.redPanelButton button {
+  background-color: var(--red);
+  box-shadow: 4px 6px var(--redAlt);
+}
+.redPanelButton button:hover {
+  background-color: var(--redLight);
+}
+
+.grayPanelButton button {
+  background-color: #ffffff;
+  box-shadow: 4px 6px var(--gray);
+  border: 4px solid var(--lightGray)
+}
+.grayPanelButton button:hover {
+  background-color: var(--lightGray);
+}
+
 .controlPanelContainer {
-  display: flex;
-  flex-direction: row;
-  border: 10px solid var(--lightGray);
+  /* display: flex;
+  flex-direction: row; */
+  display: grid;
+  grid-auto-flow: column;  
+  grid-gap: 20px;
+  border: 8px solid var(--lightGray);
   border-radius: 50px;
   align-items: center;
   justify-content: center;
@@ -138,7 +190,7 @@ input[type = "checkbox"].checkBox:hover{
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 20px;
-  border: 10px solid var(--lightGray);
+  border: 8px solid var(--lightGray);
   border-radius: 50px;
   align-items: center;
   justify-content: center;
@@ -169,10 +221,29 @@ input[type = "checkbox"].checkBox:hover{
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 20px;
-  border: 10px solid var(--lightGray);
+  border: 8px solid var(--lightGray);
   border-radius: 50px;
   align-items: center;
   justify-content: center;
   padding: 24px;
   background-color: #ffffff;
+}
+
+
+/* navigation panel */
+.createHabitContainer {
+  display: grid;
+  grid-auto-flow: column;  
+  grid-gap: 20px;
+  border: 8px solid var(--lightGray);
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 36px;
+  background-color: #ffffff;
+}
+.userProfile {
+  background-color: var(--blue);
+  border-radius: 100px;
+  padding: 10px;
 }
