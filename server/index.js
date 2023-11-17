@@ -60,18 +60,25 @@ app.put("/add-habit", async (req, res) => {
             switch(day) {
                 case 0:
                     elementToAdd.day = "Sunday"
+                    break;
                 case 1:
                     elementToAdd.day = "Monday"
+                    break;
                 case 2:
                     elementToAdd.day = "Tuesday"
+                    break;
                 case 3:
                     elementToAdd.day = "Wednesday"
+                    break;
                 case 4:
                     elementToAdd.day = "Thursday"
+                    break;
                 case 5:
                     elementToAdd.day = "Friday"
+                    break;
                 case 6:
                     elementToAdd.day = "Saturday"
+                    break;
             }
         }
         

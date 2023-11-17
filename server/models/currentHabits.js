@@ -9,7 +9,6 @@ const currentHabitsSchema = new mongoose.Schema({
         daily: Array,
         weekly: Array
     },
-
     personal: {
         daily: Array,
         weekly: Array
