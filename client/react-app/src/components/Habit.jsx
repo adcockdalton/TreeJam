@@ -15,11 +15,11 @@ function Habit({propTitle, propFrequency, propDescription, setCurrentHabits }) {
             
             {/* div containing the task name and frequency */}
                 <div className='sub-title'>
-                    {propTitle}
+                    {title}
                 </div>
 
                 <div>
-                {propFrequency} 
+                {/* {propFrequency}  */}
                 {/* formatted in the tag-like display with css */}
                 </div>
           

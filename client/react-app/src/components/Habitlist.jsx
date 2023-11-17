@@ -1,4 +1,4 @@
-import react, {useState} from 'react'
+import react, {useState, useEffect} from 'react'
 import Habit from './Habit'
 
 
@@ -6,7 +6,7 @@ function HabitList( {currentHabitData }) {
     const [currentHabits, setCurrentHabits] = useState(currentHabitData)
     // if the data for today's habits is changed (either by user adding/deleting the )
     // tasks shown, then the list will re-render to reflect that change. 
-   
+
     const socialDailyHabits = currentHabits['social']['daily'].map((habit) => {
       return <Habit key={habit['title']} propTitle={habit['title']} propFrequency={habit['frequency']} propDescription={habit['description']} setCurrentHabits={setCurrentHabits}> </Habit>
     })
@@ -18,6 +18,20 @@ function HabitList( {currentHabitData }) {
     const personalDailyHabits = currentHabits['personal']['daily'].map((habit) => {
       return <Habit key={habit['title']} propTitle={habit['title']} propFrequency={habit['frequency']} propDescription={habit['description']} setCurrentHabits={setCurrentHabits}> </Habit>
     })
+    
+    const socialWeeklyHabits = currentHabits['social']['weekly'].map((habit) => {
+      return <Habit key={habit['title']} propTitle={habit['title']} propFrequency={habit['day']} propDescription={habit['description']} setCurrentHabits={setCurrentHabits}> </Habit>
+    })
+  
+    const academicWeeklyabits = currentHabits['academic']['weekly'].map((habit) => {
+      return <Habit key={habit['title']} propTitle={habit['title']} propFrequency={habit['day']} propDescription={habit['description']} setCurrentHabits={setCurrentHabits}> </Habit>
+    })
+  
+    const personalWeeklyHabits = currentHabits['personal']['weekly'].map((habit) => {
+      return <Habit key={habit['title']} propTitle={habit['title']} propFrequency={habit['day']} propDescription={habit['description']} setCurrentHabits={setCurrentHabits}> </Habit>
+    })
+
+
 //   titles for each category in right side panel
     return (
       <div className='habitCategory' >
@@ -27,6 +41,9 @@ function HabitList( {currentHabitData }) {
             <div className='habitContain'>
                 {socialDailyHabits}
             </div>
+            <div className='habitContain'>
+            {socialWeeklyHabits}
+            </div>
             
         </div>
         <div> 
@@ -34,12 +51,20 @@ function HabitList( {currentHabitData }) {
             <div className='habitContain'>
                 {academicDailyHabits}
             </div>
+
+            <div className='habitContain'>
+            {academicWeeklyabits}
+            </div>
         
         </div>
         <div> 
             <h2>Personal</h2> 
             <div className='habitContain'>
                 {personalDailyHabits}
+            </div>
+
+            <div className='habitContain'>
+            {personalWeeklyHabits}
             </div>
             
         </div>

@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
 import './index.css';
-import Habit from './components/Habit';
 import HabitList from './components/Habitlist';
 import SuggestionList from './components/SuggestionList';
 import UserStatsList from './components/UserStatsList';
@@ -29,64 +28,22 @@ function GetDataTest() {
 //core of the user-facing interface
 function App() {
   const [showPanels, setShowPanels] = useState(true)
-  
-  const currentHabitData = {
-    "social":{
-      "daily":[
-        {
-          "title":"hang out with jake",
-          "description":"socializing is fun"
-        },
-        {
-          "title":"text friends",
-          "description":"texting is fun"
-        }
-        ],
-      "weekly":[
-        {
-          "title":"call grandparents",
-          "description":"catch up is nice",
-          "day":"Tuesday"
-        }
-      ]
-    },
+  const [currentHabits, setCurrentHabits] = useState()
 
-    "academic":{
-      "daily":[
-        {
-          "title":"study for 6b",
-          "description":"do the readings"
-        }
-        ],
-      "weekly":[
-        {
-          "title":"review spanish",
-          "description":"need to stay fluent",
-          "day":"Wednesday"
-        }
-      ]
-    },
+  useEffect(() => { // call database to get current habits and store in state on first render
+    async function getHabits() {
+      const response = await fetch("http://localhost:3001/current-habits", {
+        method: "GET",
+      })
+      const data = await response.json()
 
-    "personal":{
-      "daily":[
-        {
-          "title":"hang out with jake",
-          "description":"socializing is fun"
-        },
-        {
-          "title":"text friends",
-          "description":"texting is fun"
-        }
-        ],
-      "weekly":[
-        {
-          "title":"call grandparents",
-          "description":"catch up is nice",
-          "day":"Wednesday"
-        }
-      ]
+      console.log(data[0])
+      setCurrentHabits(data[0])
+      
     }
-  }
+    getHabits()
+
+  }, [])
 
   return (
     <div className='rootAppContainer'>
@@ -119,14 +76,18 @@ function App() {
             </div>
 
             <div className='createHabitButton'>
-              +
+                +  
             </div>
           </div>
 
       <div className='UserStats'> 
         <UserStatsList statsData={{'empty': 'for now'}}/>
       </div>
-      <div className='HabitList'> <HabitList currentHabitData={currentHabitData}/> </div>
+      
+      { // only render habit list if we got our habit data 
+        currentHabits ? <div className='HabitList'> <HabitList currentHabitData={currentHabits}/> </div> : <div className='HabitList'> </div>
+      }
+      {/* <div className='HabitList'> <HabitList currentHabitData={currentHabitData}/> </div> */}
     </div>
     </div>
       
