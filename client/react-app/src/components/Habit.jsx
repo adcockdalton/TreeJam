@@ -9,7 +9,11 @@ function Habit({propTitle, propFrequency, propDescription, setCurrentHabits }) {
     return (
       <>
         <div className='Habit'>
-            <input type="checkbox" className='checkBox'/>
+          <div className="checkBox">
+            <input type="checkbox"/>
+            <span className='checkmark'></span>
+          </div>
+            
           {/* check box for checking off if the task was completed */}
         
             
@@ -22,6 +26,7 @@ function Habit({propTitle, propFrequency, propDescription, setCurrentHabits }) {
                 {/* {propFrequency}  */}
                 {/* formatted in the tag-like display with css */}
                 </div>
+                
           
         </div>
             

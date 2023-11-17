@@ -35,6 +35,7 @@ function HabitList( {currentHabitData }) {
 //   titles for each category in right side panel
     return (
       <div className='habitCategory' >
+        <div className="Title">Today's Habits</div>
         <div> 
             <h2>Social</h2> 
             {/* contain all habits in a div to add margin */}

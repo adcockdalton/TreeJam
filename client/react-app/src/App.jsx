@@ -8,6 +8,7 @@ import ControlPanel from './components/ControlPanel';
 import deadTree from './images/deadTree.svg';
 import TextGenerator from './components/TextGenerator';
 import anteater from './images/anteater-removebg-preview.png'
+import settings from './images/settings.png'
 
 
 // fetch data from the user
@@ -70,7 +71,7 @@ function App() {
 
           {/* top right navigation panel */}
           <div className='createHabitContainer'>
-
+            <img src = {settings}/>
             <div className='userProfile'>
               <img src= {anteater}/>
             </div>
