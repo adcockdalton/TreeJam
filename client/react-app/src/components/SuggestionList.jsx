@@ -6,7 +6,7 @@ import personalIcon from '../images/personalIcon.png'
 import magic from '../images/magic.png'
 
 
-export default function SuggestionList( { formattedSuggestions } ) {
+export default function SuggestionList( { suggestions  } ) {
 
     // this is dummy data for how the AI generated suggestions look like 
     const dummySuggestionData = {
@@ -36,10 +36,11 @@ export default function SuggestionList( { formattedSuggestions } ) {
                     </div>
                     <div className='Title'>Your Day in a Nutshell</div>
                 </div>
+                
             
-                <Suggestion habitType="Social" icon = {socialIcon}suggestionDescription={dummySuggestionData['social']['suggestionDescription']} />
-                <Suggestion habitType="Academic" icon = {academicsIcon} suggestionDescription={dummySuggestionData['academic']['suggestionDescription']} />
-                <Suggestion habitType="Personal" icon = {personalIcon}suggestionDescription={dummySuggestionData['personal']['suggestionDescription']} />
+                <Suggestion habitType="Social" icon = {socialIcon} suggestionDescription={suggestions.social.suggestionDescription}/>
+                <Suggestion habitType="Academic" icon = {academicsIcon} suggestionDescription={suggestions.academic.suggestionDescription} />
+                <Suggestion habitType="Personal" icon = {personalIcon} suggestionDescription={suggestions.personal.suggestionDescription} />
             </div>
 
         </>

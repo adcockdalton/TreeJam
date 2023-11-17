@@ -202,6 +202,23 @@ app.post('/generate-text', async (req, res) => {
     }
 });
 
+app.post('/summarize-text', async (req, res) => {
+    const prompt = req.body.prompt;
+
+    try {
+        const response = await openai.completions.create({
+            model: "text-davinci-003",
+            prompt: prompt,
+            max_tokens: 150,
+          });
+          console.log(response);
+        res.json({ response: response.choices[0].text.trim() });
+    } catch (error) {
+        console.error('Error calling OpenAI API:', error);
+        res.status(500).send('Error generating text');
+    }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
