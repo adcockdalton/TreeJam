@@ -201,10 +201,11 @@ function App() {
                   
                   <div className='modalContent'>
                     <div className="topModalContain">
-                        <div className='Title'>Create your account</div>
-                        <div className='close' onClick={onClose}>
+                        <div className='Title'>Add a new habit</div>
+                        <div className='close' onClick={() => {onClose();}}>
                           X
                         </div>
+                        
                     </div>
                     
                     <div className='modalBody'>
@@ -268,6 +269,7 @@ function App() {
                      </div>
                   </div>
                   <div className="overlay"></div>
+
                 </Modal>
 
             </div>
