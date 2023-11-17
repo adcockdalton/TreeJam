@@ -15,6 +15,7 @@ import academicsIcon from './images/academicsIcon.png'
 import socialIcon from './images/socialIcon.png'
 import personalIcon from './images/personalIcon.png'
 import magic from './images/magic.png'
+import profilePic from './images/mrbeast.jpg'
 
 
 import {
@@ -160,10 +161,13 @@ function App() {
 
 useEffect(() => {
   // Define your texts to summarize
-  const academicText = 'Summarize academic activities (in 30-40 characters): Ashley studied 3 hours for the ics 6b exam. Got 68% on the test unfortunately.';
-  const socialText = 'Summarize social activities (in 30-40 characters): Ashley did 10 reps of yoga stretching. Beat her PR of 8 reps.';
-  const personalText = 'Summarize personal activities (in 30-40 characters): Ashley went to a part of 30 with her friends. Talked to 15 people.';
-  
+  const academicText = 'Provide tips on these habits (in 40-50 characters): the habit is to retain knowledge for the exam.';
+  // const academicText   = 'Summarize social activities (in 30-40 characters): Ashley studied 3 hours for the ics 6b exam. Got 68% on the test unfortunately.';
+  const socialText   = 'Provide tips on these habits (in 40-50 characters): the habit is to do 8 reps of yoga stretching.';
+  // const socialText   = 'Summarize social activities (in 30-40 characters): Ashley did 10 reps of yoga stretching. Beat her PR of 8 reps.';
+  const personalText = 'Provide tips on these habits (in 40-50 characters): the habit is to improve her speaking skills to an audience.';
+  // const personalText = 'Summarize personal activities (in 30-40 characters): Ashley went to a party of 30 with her friends. Talked to 15 people.';
+
   // Fetch and set the academic summary
   fetchSummary(academicText).then(academicSummary => {
     console.log("Fetched Summary:", academicSummary); // Debug log
@@ -337,6 +341,43 @@ useEffect(() => {
                         Save
                       </button>
                      </div>
+                  </div>
+                  <div className="overlay"></div>
+                </Modal>
+
+            </div>
+            {/* //profile modo */}
+            <div className='createHabitButton' onClick={onOpen}>
+                +  
+                <Modal initialFocusRef={initialModalRef} finalFocusRef={finalModalRef} isOpen={isOpen} onClose={onClose}>
+                  
+                  <div className='modalContent'>
+                    <div className="topModalContain">
+                        <div className='Title'>Ashley</div>
+                        <div className='close' onClick={onClose}>
+                          X
+                        </div>
+                    </div>
+                    <div class="profile-card">
+                    <div className="profile-header">
+                        <button className="close-button">X</button>
+                        <img src= {profilePic} />
+                        <h1>Mr. Beast</h1>
+                        <p className="title">Gardener</p>
+                  </div>
+                    <div class="profile-content">
+                        <p class="generated-tag">Magically Generated</p>
+                        <p class="description">You are an Explorer!</p>
+                        <p class="description-details">Based on your academic profile, you seem to enjoy exploring different multi-disciplinary fields in science, humanities, and maths.</p>
+                    </div>
+                    <div class="recommendations">
+                        <p class="recommendation-title">Our Recommendations</p>
+                        <div class="recommendation-action">
+                            <button class="action-button">Spend more time refining subjects</button>
+                            <p class="action-description">tone down on the exploration</p>
+                        </div>
+                    </div>
+                  </div>
                   </div>
                   <div className="overlay"></div>
                 </Modal>
