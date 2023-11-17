@@ -19,12 +19,12 @@
   --gray: #B7B7B7;
 }
 
-body, html {
+/* body, html {
   margin: 0;
   display: grid;
   place-items: center;
   min-height: 100vh;
-}
+} */
 
 /* typography */
 h1 {
