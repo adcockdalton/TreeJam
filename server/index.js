@@ -44,7 +44,15 @@ app.get("/current-habits", async (req, res) => {
 // Adds habit to requested habit type and frequency
 // For weekly activities, the scheduled day is the current day of the week
 app.put("/add-habit", async (req, res) => {
+    console.log('request')
+    console.log(req)
+    console.log('hi')
     const newData = req.body
+    console.log('new data: ')
+    
+    console.log(newData)
+
+
 
     try {
         let existingData = await currentHabits.findOne()

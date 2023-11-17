@@ -30,19 +30,19 @@
     grid-template-rows: auto auto auto auto auto auto auto 1fr; /* Adjust the number of 'auto' to match your actual rows */;
   width: 100%;
   height: 100vh;
-  grid-gap: 10px;
-  padding: 5vh 5vw;
-
+  grid-gap: 20px;
+  place-content: center;
+  margin: 5vw 0;
 
 }
 
 .SuggestionList {
-  grid-area: suggestion;
+  /* grid-area: suggestion; */
   /* border: 2px solid black; */
 }
 
 .UserStats {
-  grid-area: userStats;
+  /* grid-area: userStats; */
   /* border: 2px solid red; */
 }
 
@@ -50,8 +50,12 @@
   /* grid-area: tree; */
   display: grid;
   place-content: center;
+  margin: 2vh;
   /* border: 2px solid green; */
 
+}
+.TreeContainer img {
+  max-width: 300px;
 }
 
 .bottomPanelContainer {
@@ -62,21 +66,25 @@
 
 /* center panel */
 .centerPanel {
-  display: grid;
+  
   place-content: center;
   align-items: center;
+  grid-template-columns: 1fr;
 }
 /* right panel */
 .ButtonContainer {
-  grid-area: buttonContainer;
+  /* grid-area: buttonContainer; */
   /* border: 2px solid yellow; */
-
+  grid-template-columns: 1fr;
+  display: grid;
+  grid-gap: 12px;
+  width: 300px;
 }
 
 .HabitList {
-  grid-area: habitList;
-  /* border: 2px solid orange; */
-
+  /* grid-area: habitList; */
+  
+  width: 100%;
 }
 
 .textGeneratorSection {
