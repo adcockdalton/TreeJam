@@ -37,6 +37,8 @@ app.get("/current-habits", async (req, res) => {
     }
 })
 
+// Adds habit to requested habit type and frequency
+// For weekly activities, the scheduled day is the current day of the week
 app.put("/add-habit", async (req, res) => {
     const newData = req.body
 
@@ -89,6 +91,75 @@ app.put("/add-habit", async (req, res) => {
         res.json(updatedData)
     } catch (error) {
         console.error('Error pushing elements to the nested array in MongoDB:', error.message)
+        res.status(500).json({ error: 'Internal Server Error' })
+    }
+})
+
+// Updates description of existing habit searched by title regardless of types
+app.put("/edit-habit", async (req, res) => {
+    const newData = req.body
+
+    try {
+        const existingData = await currentHabits.findOne({})
+
+        if (!existingData) {
+            return res.status(404).json({ error: 'Data not found' })
+        }
+
+        if (newData.habitType === "social") {
+            for (const doc of existingData.social) {
+                if (doc.title === newData.title) {
+                    doc.description = newData.description
+                    await doc.save()
+                }
+            }
+        } else if (newData.habitType === "academic") {
+            for (const doc of existingData.academic) {
+                if (doc.title === newData.title) {
+                    doc.description = newData.description
+                    await doc.save()
+                }
+            }
+        } else if (newData.habitType === "personal") {
+            for (const doc of existingData.personal) {
+                if (doc.title === newData.title) {
+                    doc.description = newData.description
+                    await doc.save()
+                }
+            }
+        }
+
+        const updatedData = await existingData.save()
+
+        res.json(updatedData)
+    } catch (error) {
+        console.error('Error editing elements to the nested array in MongoDB:', error.message)
+        res.status(500).json({ error: 'Internal Server Error' })
+    }
+})
+
+app.put("/add-completed-habit", async (req, res) => {
+    const newData = req.body
+
+    try {
+        const existingData = await completedHabits.findOne({})
+
+        if (!existingData) {
+            return res.status(404).json({ error: 'Data not found' })
+        }
+
+        const elementToAdd = {
+            title: newData.title,
+            description: newData.description
+        }
+
+        existingData.push(elementToAdd)
+
+        const updatedData = await existingData.save()
+
+        res.json(updatedData)
+    } catch (error) {
+        console.error('Error pushing elements to the completedHabits nested array in MongoDB:', error.message)
         res.status(500).json({ error: 'Internal Server Error' })
     }
 })
