@@ -9,6 +9,7 @@ import deadTree from './images/deadTree.svg';
 import TextGenerator from './components/TextGenerator';
 import anteater from './images/anteater-removebg-preview.png'
 import settings from './images/settings.png'
+import Chart from 'chart.js/auto'
 import academicsIcon from './images/academicsIcon.png'
 import socialIcon from './images/socialIcon.png'
 import personalIcon from './images/personalIcon.png'
@@ -60,7 +61,6 @@ function App() {
   const habitFrequencyRef = useRef(null)
   const habitDescriptionRef = useRef(null)
 
-
   useEffect(() => { // call database to get current habits and store in state on first render
     async function getHabits() {
       const response = await fetch("http://localhost:3001/current-habits", {
@@ -69,8 +69,56 @@ function App() {
       const data = await response.json()
 
       console.log(data[0])
+      console.log(typeof data[0])
+      let donutChart;
+      setChart(data[0], donutChart)
       setCurrentHabits(data[0])
       
+    }
+
+    function setChart(data, donutChart) {
+      if (donutChart != undefined){
+        donutChart.destroy()
+      }
+      const numSocialHabits = data['social']['daily'].length + data['social']['weekly'].length
+      const numAcademicHabits = data['academic']['daily'].length + data['academic']['weekly'].length
+      const numPersonalHabits = data['personal']['daily'].length + data['personal']['weekly'].length
+
+      const chartData = {
+        datasets: [{
+          data: [numSocialHabits, numAcademicHabits, numPersonalHabits],
+          backgroundColor: [
+            'rgb(122, 200, 255)',
+            'rgb(137, 211, 126)',
+            'rgb(255, 148, 148)',
+          ],
+          borderColor: 'rgb(122, 200, 255)'
+        }
+      ],
+
+        labels: [
+          'Social',
+          'Academic',
+          'Personal'
+        ]
+      }
+      const config = {
+        type: 'doughnut',
+        data: chartData,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'right'
+            }
+          }
+        }
+      }
+      
+      const chartContext = document.getElementById('chart')//.getContext('2d')
+      donutChart = new Chart(chartContext, config)
+      donutChart.update()
     }
     getHabits()
 
@@ -106,6 +154,7 @@ function App() {
 
   return (
     <div className='rootAppContainer'>
+
       
       <div className="leftPanel">
         {/* ai genereated summary */}
@@ -115,8 +164,8 @@ function App() {
 
         {/* user stats */}
         <div className='UserStats'> 
-        <UserStatsList statsData={{'empty': 'for now'}}/>
-      </div>
+          <canvas id='chart'> </canvas>
+        </div>
       </div>
       
 
@@ -216,13 +265,7 @@ function App() {
                       <button type="submit" form="new-habit-form">
                         Save
                       </button>
-
                      </div>
-
-                    
-                      
-                      
-                   
                   </div>
                   <div className="overlay"></div>
                 </Modal>

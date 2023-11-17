@@ -45,7 +45,7 @@ app.get("/current-habits", async (req, res) => {
 // For weekly activities, the scheduled day is the current day of the week
 app.put("/add-habit", async (req, res) => {
     console.log('request')
-    console.log(req)
+    // console.log
     console.log('hi')
     const newData = req.body
     console.log('new data: ')

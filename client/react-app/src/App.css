@@ -41,7 +41,17 @@
   /* border: 2px solid black; */
 }
 
+#chart {
+  padding: 15px 15px 15px 15px;
+}
 .UserStats {
+  /* height: auto; */
+  display: flex;
+  height: 25vh;
+  /* width: 25vw; */
+  justify-content: center;
+  align-items: center;
+  position: relative;
   /* grid-area: userStats; */
   /* border: 2px solid red; */
 }
