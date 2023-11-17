@@ -87,7 +87,7 @@ function App() {
   return (
     <div className='rootAppContainer'>
       <div className='LeftPanels'> 
-        <div className='SuggestionList'>      
+        <div className='SuggestionList'>
           <SuggestionList />
         </div>
 
@@ -108,12 +108,15 @@ function App() {
       </div>
 
       <div className='rightPanelContainer'>
+        {/* top of the right panel */}
         <div className='ButtonContainer'>
+
           <div className='ShrinkButtonContainer'>
             <button>
               {/* shrink button here */}
             </button>
           </div>
+
           <div className='createHabitContainer'>
             <div className='userProfile'>
               {/* user profile icon goes here */}
@@ -124,11 +127,14 @@ function App() {
               </button>
             </div>
           </div>
+
         </div>
 
+        {/* bottom of right panel */}
         <div className='HabitList'>
           <HabitList currentHabitData={currentHabitData}/>
           {/* currentHabitData will be retrieved from MongoDB database, where all the user's habits (daily/weekly, etc...) are stored  */}
+          
           <Habit/>
         </div>
       </div>

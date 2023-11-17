@@ -18,12 +18,31 @@ function HabitList( {currentHabitData }) {
     const personalDailyHabits = currentHabits['personal']['daily'].map((habit) => {
       return <Habit key={habit['title']} propTitle={habit['title']} propFrequency={habit['frequency']} propDescription={habit['description']} setCurrentHabits={setCurrentHabits}> </Habit>
     })
-  
+//   titles for each category in right side panel
     return (
-      <div>
-        <div> Social {socialDailyHabits}</div>
-        <div> Academic {academicDailyHabits}</div>
-        <div> Personal {personalDailyHabits}</div>
+      <div className='habitCategory' >
+        <div> 
+            <h2>Social</h2> 
+            {/* contain all habits in a div to add margin */}
+            <div className='habitContain'>
+                {socialDailyHabits}
+            </div>
+            
+        </div>
+        <div> 
+            <h2>Academic</h2> 
+            <div className='habitContain'>
+                {academicDailyHabits}
+            </div>
+        
+        </div>
+        <div> 
+            <h2>Personal</h2> 
+            <div className='habitContain'>
+                {personalDailyHabits}
+            </div>
+            
+        </div>
       </div>
   
     )

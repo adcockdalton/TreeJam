@@ -22,9 +22,13 @@ export default function SuggestionList( { formattedSuggestions } ) {
 
     return (
         <>  
-            <Suggestion habitType="Social" suggestionDescription={dummySuggestionData['social']['suggestionDescription']} />
-            <Suggestion habitType="Academic" suggestionDescription={dummySuggestionData['academic']['suggestionDescription']} />
-            <Suggestion habitType="Personal" suggestionDescription={dummySuggestionData['personal']['suggestionDescription']} />
+            <div className='fullSuggestionContainer'>
+            <div className='Title'>Your Day in a Nutshell</div>
+                <Suggestion habitType="Social" suggestionDescription={dummySuggestionData['social']['suggestionDescription']} />
+                <Suggestion habitType="Academic" suggestionDescription={dummySuggestionData['academic']['suggestionDescription']} />
+                <Suggestion habitType="Personal" suggestionDescription={dummySuggestionData['personal']['suggestionDescription']} />
+            </div>
+
         </>
     );
 }

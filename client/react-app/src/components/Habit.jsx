@@ -7,33 +7,33 @@ function Habit({propTitle, propFrequency, propDescription, setCurrentHabits }) {
     const [editMode, setEditMode] = useState(false) // controls whether the pop-up modal for editing the tasks in the list is being displayed currently or not
   
     return (
-      <div>
-        <div>
-            <input type="checkbox" />
+      <>
+        <div className='Habit'>
+            <input type="checkbox" className='checkBox'/>
           {/* check box for checking off if the task was completed */}
-          
-        </div>
-        <div> 
-          {/* div containing the task name and frequency */}
-            <h1>
-              {propTitle}
-            </h1>
-            <div>
-              {propFrequency} 
-              {/* formatted in the tag-like display with css */}
+        
+            <div> 
+            {/* div containing the task name and frequency */}
+                <div className='sub-title'>
+                    {propTitle}
+                </div>
+                <div>
+                {propFrequency} 
+                {/* formatted in the tag-like display with css */}
+                </div>
+            </div>
+            <div> 
+            {/* <button> </button> */}
+            {/* right-arrow button for expanding into pop up modal to edit task */}
+            {/* button changes the editMode state to True, causing the pop up  */}
+            {/* modal to appear where task can be edited.  */}
+    
+            {/* pop up modal will be in another react component */}
+            {/* {editMode == true ? <PopUpModal title={title}, etc../> : <>} */}
+            {/* above displays Pop up modal if the edit mode state is true  */}
             </div>
         </div>
-        <div> 
-          {/* <button> </button> */}
-          {/* right-arrow button for expanding into pop up modal to edit task */}
-          {/* button changes the editMode state to True, causing the pop up  */}
-          {/* modal to appear where task can be edited.  */}
-  
-          {/* pop up modal will be in another react component */}
-          {/* {editMode == true ? <PopUpModal title={title}, etc../> : <>} */}
-          {/* above displays Pop up modal if the edit mode state is true  */}
-        </div>
-      </div>
+      </>
     )
     
   }

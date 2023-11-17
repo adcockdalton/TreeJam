@@ -4,7 +4,7 @@ import ControlPanelButton from './ControlPanelButton'
 export default function ControlPanel( { setShowPanels } ) {
 
     return (
-        <div>
+        <div className='controlPanelContainer'>
             <div className='controlPanelButtonContainer'>
                 <ControlPanelButton habitType='social' color='bluePanelButton' icon='' setShowPanels={setShowPanels}/>
             </div>
