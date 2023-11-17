@@ -12,17 +12,19 @@ function Habit({propTitle, propFrequency, propDescription, setCurrentHabits }) {
             <input type="checkbox" className='checkBox'/>
           {/* check box for checking off if the task was completed */}
         
-            <div> 
+            
             {/* div containing the task name and frequency */}
                 <div className='sub-title'>
                     {propTitle}
                 </div>
+
                 <div>
                 {propFrequency} 
                 {/* formatted in the tag-like display with css */}
                 </div>
-            </div>
-            <div> 
+          
+        </div>
+            
             {/* <button> </button> */}
             {/* right-arrow button for expanding into pop up modal to edit task */}
             {/* button changes the editMode state to True, causing the pop up  */}
@@ -31,8 +33,8 @@ function Habit({propTitle, propFrequency, propDescription, setCurrentHabits }) {
             {/* pop up modal will be in another react component */}
             {/* {editMode == true ? <PopUpModal title={title}, etc../> : <>} */}
             {/* above displays Pop up modal if the edit mode state is true  */}
-            </div>
-        </div>
+            
+        
       </>
     )
     

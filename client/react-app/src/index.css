@@ -20,12 +20,13 @@
   --darkGray: #808080;
 }
 
-/* body, html {
+body, html {
   margin: 0;
   display: grid;
   place-items: center;
   min-height: 100vh;
-} */
+  background: #8AD5FF;
+}
 
 /* typography */
 .Title {
@@ -62,7 +63,7 @@ p {
   padding: 5px;
   height: 28px;
   width: 28px;
-  
+  position: relative;
 }
 
 input[type = "checkbox"].checkBox:hover{
@@ -77,13 +78,19 @@ input[type = "checkbox"].checkBox:hover{
   align-items: center;
   justify-content: center; */
   display: grid;
-  grid-auto-flow: column;  
+  grid-auto-flow: row;  
+  justify-content: space-around;
   grid-gap: 20px;
   align-items: flex-start;
   border-radius: 20px;
   border: 4px solid var(--lightGray);
   padding: 28px;
   box-shadow: 4px 4px  var(--lightGray);
+  position: relative;
+}
+
+.Habit .sub-title {
+  
 }
 
 .controlPanel button{
@@ -104,6 +111,7 @@ input[type = "checkbox"].checkBox:hover{
   align-items: center;
   justify-content: center;
   padding: 28px 36px;
+  background-color: #ffffff;
 }
 .habitCategory {
   display: grid;
@@ -135,6 +143,9 @@ input[type = "checkbox"].checkBox:hover{
   align-items: center;
   justify-content: center;
   padding: 24px;
+  background-color: #ffffff;
+  height: 100vh;
+  overflow: scroll;
 }
 
 /* container for suggestions on left panel */
@@ -163,4 +174,5 @@ input[type = "checkbox"].checkBox:hover{
   align-items: center;
   justify-content: center;
   padding: 24px;
+  background-color: #ffffff;
 }
