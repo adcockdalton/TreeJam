@@ -344,43 +344,8 @@ useEffect(() => {
                 </Modal>
 
             </div>
-            {/* //profile modo */}
-            <div className='createHabitButton' onClick={onOpen}>
-                +  
-                <Modal initialFocusRef={initialModalRef} finalFocusRef={finalModalRef} isOpen={isOpen} onClose={onClose}>
-                  
-                  <div className='modalContent'>
-                    <div className="topModalContain">
-                        <div className='Title'>Ashley</div>
-                        <div className='close' onClick={onClose}>
-                          X
-                        </div>
-                    </div>
-                    <div class="profile-card">
-                    <div className="profile-header">
-                        <button className="close-button">X</button>
-                        <img src= {profilePic} />
-                        <h1>Mr. Beast</h1>
-                        <p className="title">Gardener</p>
-                  </div>
-                    <div class="profile-content">
-                        <p class="generated-tag">Magically Generated</p>
-                        <p class="description">You are an Explorer!</p>
-                        <p class="description-details">Based on your academic profile, you seem to enjoy exploring different multi-disciplinary fields in science, humanities, and maths.</p>
-                    </div>
-                    <div class="recommendations">
-                        <p class="recommendation-title">Our Recommendations</p>
-                        <div class="recommendation-action">
-                            <button class="action-button">Spend more time refining subjects</button>
-                            <p class="action-description">tone down on the exploration</p>
-                        </div>
-                    </div>
-                  </div>
-                  </div>
-                  <div className="overlay"></div>
-                </Modal>
 
-            </div>
+            
           </div>
 
       
