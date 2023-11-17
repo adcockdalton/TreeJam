@@ -10,14 +10,14 @@
   /* use cases are included in figma doc */
   --red: #FF7878;
   --redAlt: #D24141;
-  --redLight: #FF9696;
+  --redLight: rgb(255, 148, 148);
 
-  --blue: #78C6FF;
+  --blue: rgb(122, 200, 255);
   --blueAlt: #4D94C8;
   --blueLight: #A2D8FF;
   --blueHover: #DDF1FF;
 
-  --green: #89D27D;
+  --green: rgb(137, 211, 126);
   --greenAlt: #4EB73D;
   --greenLight: #9FE394;
   --lightGray: #EAEAEA;
