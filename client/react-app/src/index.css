@@ -458,11 +458,7 @@ button:hover {
   align-items: start;
   justify-content: start;
 }
-.inputForm input::placeholder {
-  color: #d3d3d3;
-  
 
-}
 .Long textarea{
   height: 20vh;
   justify-content: flex-start;
