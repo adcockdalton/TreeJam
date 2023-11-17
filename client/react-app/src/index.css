@@ -23,6 +23,10 @@
   --lightGray: #EAEAEA;
   --gray: #B7B7B7;
   --darkGray: #808080;
+
+  /* button colors */
+  --buttonPrimary: #1A86E9;
+  --buttonPrimaryShadow: #1374CE;
 }
 
 body, html {
@@ -35,7 +39,7 @@ body, html {
 
 /* typography */
 .Title {
-  font-size: 1.8em;
+  font-size: 2em;
   line-height: 1.2;
   color: var(--largeTextColor);
   font-weight: 700;
@@ -69,6 +73,26 @@ h2 {
 }
 
 /* animations */
+
+/* main buttons */
+button  {
+  padding: 12px 36px;
+  border-radius: 12px;
+  font-size: 1.15em;
+  border: none;
+  font-weight: 600;
+  width: 100%;
+  background-color: var(--buttonPrimary);
+  box-shadow: 4px 4px var(--buttonPrimaryShadow);
+  color: white;
+}
+button:hover {
+  cursor: pointer;
+  background-color:#4BA8FF;
+  box-shadow: none;
+  transform:translate(4px, 4px)
+}
+
 
 /* input[type = "checkbox"] */
 .checkBox {
@@ -189,17 +213,35 @@ h2 {
   height: 80px;
   outline: none;
   border: none;
+  padding: 0;
 }
 .controlPanel button:hover {
   cursor: pointer;
   transform: translate(4px, 4px);
   box-shadow: none;
+  color: white;
 }
 .controlPanel img {
   max-width: 50px;
 }
 
+.close {
+  position: absolute;
+  display: grid;
+  place-content: center;
+  right: 20px;
+  height: 40px;
+  width: 40px;
+  background-color: var(--lightGray);
+  border-radius: 100px;
+  color: gray;
+  border: none;
+}
 
+.close:hover {
+  cursor: pointer;
+  background-color: #e1e1e1;
+}
 /* main category buttons */
 .bluePanelButton button{
   background-color: var(--blue);
@@ -285,7 +327,8 @@ h2 {
   padding: 24px;
   background-color: #ffffff;
   height: 60vh;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: scroll;
 }
 
 /* container for suggestions on left panel */
@@ -369,4 +412,144 @@ h2 {
 }
 .createHabitButton:hover {
   background-color: var(--blueLight);
+}
+
+.modalContent {
+  position: fixed;
+
+  top: 10vh;
+  width: 500px;
+  height: 60vh;
+  padding: 36px;
+  left: calc(50vw - 225px);
+  margin: 0;
+  z-index: 99;
+  overflow-x:hidden;
+  overflow-y: scroll;
+  border: 8px solid var(--lightGray);
+  border-radius: 50px;
+  background-color: white;
+}
+
+.overlay {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(0 0 0 / 75%);
+  z-index: 10;
+}
+.topModalContain {
+  display: grid;
+  grid-template-columns: auto;
+  margin-bottom: 48px;
+}
+
+.modalContent .sub-title {
+  opacity: .8;
+}
+
+.inputForm {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 12px;
+  position: relative;
+  align-items: start;
+  justify-content: start;
+}
+.inputForm input::placeholder {
+  color: #d3d3d3;
+  
+
+}
+.Long textarea{
+  height: 20vh;
+  justify-content: flex-start;
+  align-self: flex-start;
+  display: flex;
+  word-wrap: break-word;
+  word-break: break-all;
+  border: 3px solid var(--lightGray);
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 1.2em;
+  color: #d3d3d3;
+  font-family: Inter, sans-serif;
+}
+
+/* Text color when the input is not focused (after losing focus) */
+input:not(:focus),
+textarea:not(:focus) {
+  color: var(--darkGray); /* or your blur text color */
+}
+.inputForm input {
+  border: 3px solid var(--lightGray);
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 1.2em;
+  color: #d3d3d3;
+}
+.modalBody {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 36px;
+}
+
+
+.inputForm input:hover, .Long textarea:hover, .inputForm select:hover {
+  background-color: var(--blueHover);
+  border-color: var(--blue);
+  cursor: pointer;
+}
+
+.inputForm input:focus, .Long textarea:focus, .inputForm select:focus {
+  color: var(--darkGray);
+  border-color: var(--blue);
+  outline: none;
+}
+.dropDown {
+  border: 3px solid var(--lightGray);
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 1.2em;
+  color: var(--textColor)
+}
+.inputFormContain {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 48px;
+}
+
+.optionContain img {
+  max-width: 10px;
+}
+
+.pyschContain {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 4px;
+  border-radius: 20px;
+  border: 4px solid #f5f5f5;
+  padding: 28px;
+  position: relative;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 18px;
+
+}
+.topPsychContain {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 12px;
+  justify-content: start;
+}
+.topPsychContain img {
+  max-width: 30px;
+}
+.pyschContain .sub-title{
+  font-size: 1.15em;
+}
+.pyschContain p {
+  margin-left: 42px;
 }
