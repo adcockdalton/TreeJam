@@ -33,6 +33,7 @@
   grid-gap: 20px;
   place-content: center;
   margin: 5vw 0;
+  
 
 }
 
@@ -89,6 +90,8 @@
   display: grid;
   grid-gap: 12px;
   width: 400px;
+  align-items: start;
+
 }
 
 .leftPanel {

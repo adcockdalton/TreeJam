@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
 import './index.css';
 import HabitList from './components/Habitlist';
@@ -6,6 +7,7 @@ import SuggestionList from './components/SuggestionList';
 import UserStatsList from './components/UserStatsList';
 import ControlPanel from './components/ControlPanel';
 import deadTree from './images/deadTree.svg';
+import aliveTree from './images/aliveTree.svg';
 import TextGenerator from './components/TextGenerator';
 import anteater from './images/anteater-removebg-preview.png'
 import settings from './images/settings.png'
@@ -47,10 +49,31 @@ function GetDataTest() {
   )
 }
 
+async function fetchSummary(text) {
+  try {
+    const response = await fetch('http://localhost:3001/summarize-text', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: text })
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText);
+    }
+
+    const data = await response.json();
+    return data.response;
+  } catch (error) {
+    console.error('Error fetching summary:', error);
+    return ''; // or a default error message
+  }
+}
+
 //core of the user-facing interface
 function App() {
   const [showPanels, setShowPanels] = useState(true)
   const [currentHabits, setCurrentHabits] = useState()
+  const [summary, setSummary] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialModalRef = useRef(null)
@@ -124,6 +147,55 @@ function App() {
 
   }, [])
 
+  const [suggestions, setSuggestions] = useState({
+    social: {
+        'suggestionDescription': 'hang out with friends'
+    },
+    academic: {
+        'suggestionDescription': 'study for ics 6b'
+    },
+    personal: {
+        'suggestionDescription': 'do yoga and meditate'
+    }
+});
+
+useEffect(() => {
+  // Define your texts to summarize
+  const academicText = 'Summarize academic activities (in 30-40 characters): Ashley studied 3 hours for the ics 6b exam. Got 68% on the test unfortunately.';
+  const socialText = 'Summarize social activities (in 30-40 characters): Ashley did 10 reps of yoga stretching. Beat her PR of 8 reps.';
+  const personalText = 'Summarize personal activities (in 30-40 characters): Ashley went to a part of 30 with her friends. Talked to 15 people.';
+  
+  // Fetch and set the academic summary
+  fetchSummary(academicText).then(academicSummary => {
+    console.log("Fetched Summary:", academicSummary); // Debug log
+    setSuggestions(prev => ({ ...prev, academic: { 'suggestionDescription': academicSummary } }));
+  });
+
+  // Fetch and set the social summary
+  fetchSummary(socialText).then(socialSummary => {
+    console.log("Fetched Summary:", socialSummary); // Debug log
+    setSuggestions(prev => ({ ...prev, social: { 'suggestionDescription': socialSummary } }));
+  });
+
+  // Fetch and set the personal summary
+  fetchSummary(personalText).then(personalSummary => {
+    console.log("Fetched Summary:", personalSummary); // Debug log
+    setSuggestions(prev => ({ ...prev, personal: { 'suggestionDescription': personalSummary } }));
+  });
+}, []);
+
+//code for changing only personal
+//   const textToSummarize = 'Summarize the user recent activity: Ashley studied 3 hours for the ics 6b exam, did 2 reps of yoga stretching, and went to a party with friends.';
+//   fetchSummary(textToSummarize).then(fetchedSummary => {
+//       console.log("Fetched Summary:", fetchedSummary); // Debug log
+//       setSuggestions(prev => {
+//           const updatedSuggestions = { ...prev, personal: { 'suggestionDescription': fetchedSummary } };
+//           console.log("Updated Suggestions:", updatedSuggestions); // Debug log
+//           return updatedSuggestions;
+//       });
+//   });
+// }, []);
+
   async function addHabit(event) {
     event.preventDefault();
     const newHabitName = habitNameRef.current.value
@@ -159,7 +231,7 @@ function App() {
       <div className="leftPanel">
         {/* ai genereated summary */}
         <div className='SuggestionList'> 
-          <SuggestionList /> 
+          <SuggestionList suggestions={suggestions} />
         </div>
 
         {/* user stats */}
@@ -171,10 +243,7 @@ function App() {
 
       {/* center panel */}
       <div className="centerPanel">
-          <div className='TreeContainer'>  
-            <img src= {deadTree} />
-          </div>
-
+          {currentHabits ? (<div className='TreeContainer'> <img src= {aliveTree} /> </div>) : (<div className='TreeContainer'> <img src= {deadTree} /> </div>)}
           <div className='bottomPanelContainer'> 
             <ControlPanel setShowPanels={setShowPanels}/> 
           </div>
@@ -182,8 +251,8 @@ function App() {
       
       {/* right panel */}
       <div className='ButtonContainer'>
-          <div className='ShrinkButtonContainer'>
-          </div>
+          
+
 
           {/* top right navigation panel */}
           <div className='createHabitContainer'>
