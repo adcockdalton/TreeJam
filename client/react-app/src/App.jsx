@@ -49,9 +49,18 @@ function App() {
   return (
     <div className='rootAppContainer'>
       
-      <div className='SuggestionList'> 
-        <SuggestionList /> 
+      <div className="leftPanel">
+        {/* ai genereated summary */}
+        <div className='SuggestionList'> 
+          <SuggestionList /> 
+        </div>
+
+        {/* user stats */}
+        <div className='UserStats'> 
+        <UserStatsList statsData={{'empty': 'for now'}}/>
       </div>
+      </div>
+      
 
       {/* center panel */}
       <div className="centerPanel">
@@ -71,7 +80,10 @@ function App() {
 
           {/* top right navigation panel */}
           <div className='createHabitContainer'>
-            <img src = {settings}/>
+            <div className="settingsContain">
+              <img src = {settings}/>
+            </div>
+            
             <div className='userProfile'>
               <img src= {anteater}/>
             </div>
@@ -81,9 +93,6 @@ function App() {
             </div>
           </div>
 
-      <div className='UserStats'> 
-        <UserStatsList statsData={{'empty': 'for now'}}/>
-      </div>
       
       { // only render habit list if we got our habit data 
         currentHabits ? <div className='HabitList'> <HabitList currentHabitData={currentHabits}/> </div> : <div className='HabitList'> </div>
