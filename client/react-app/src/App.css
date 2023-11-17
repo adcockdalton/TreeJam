@@ -33,6 +33,7 @@
   grid-gap: 20px;
   place-content: center;
   margin: 5vw 0;
+  
 
 }
 
@@ -41,7 +42,17 @@
   /* border: 2px solid black; */
 }
 
+#chart {
+  padding: 15px 15px 15px 15px;
+}
 .UserStats {
+  /* height: auto; */
+  display: flex;
+  height: 25vh;
+  /* width: 25vw; */
+  justify-content: center;
+  align-items: center;
+  position: relative;
   /* grid-area: userStats; */
   /* border: 2px solid red; */
 }
@@ -78,7 +89,16 @@
   grid-template-columns: 1fr;
   display: grid;
   grid-gap: 12px;
-  width: 300px;
+  width: 400px;
+  align-items: start;
+
+}
+
+.leftPanel {
+  grid-template-columns: 1fr;
+  display: grid;
+  grid-gap: 12px;
+  width: 400px;
 }
 
 .HabitList {

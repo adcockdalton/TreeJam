@@ -10,6 +10,13 @@ import deadTree from './images/deadTree.svg';
 import TextGenerator from './components/TextGenerator';
 import anteater from './images/anteater-removebg-preview.png'
 import settings from './images/settings.png'
+import Chart from 'chart.js/auto'
+import academicsIcon from './images/academicsIcon.png'
+import socialIcon from './images/socialIcon.png'
+import personalIcon from './images/personalIcon.png'
+import magic from './images/magic.png'
+
+
 import {
   Modal,
   ModalOverlay,
@@ -89,7 +96,6 @@ function App() {
   const habitFrequencyRef = useRef(null)
   const habitDescriptionRef = useRef(null)
 
-
   useEffect(() => { // call database to get current habits and store in state on first render
     async function getHabits() {
       const response = await fetch("http://localhost:3001/current-habits", {
@@ -98,8 +104,56 @@ function App() {
       const data = await response.json()
 
       console.log(data[0])
+      console.log(typeof data[0])
+      let donutChart;
+      setChart(data[0], donutChart)
       setCurrentHabits(data[0])
       
+    }
+
+    function setChart(data, donutChart) {
+      if (donutChart != undefined){
+        donutChart.destroy()
+      }
+      const numSocialHabits = data['social']['daily'].length + data['social']['weekly'].length
+      const numAcademicHabits = data['academic']['daily'].length + data['academic']['weekly'].length
+      const numPersonalHabits = data['personal']['daily'].length + data['personal']['weekly'].length
+
+      const chartData = {
+        datasets: [{
+          data: [numSocialHabits, numAcademicHabits, numPersonalHabits],
+          backgroundColor: [
+            'rgb(122, 200, 255)',
+            'rgb(137, 211, 126)',
+            'rgb(255, 148, 148)',
+          ],
+          borderColor: 'rgb(122, 200, 255)'
+        }
+      ],
+
+        labels: [
+          'Social',
+          'Academic',
+          'Personal'
+        ]
+      }
+      const config = {
+        type: 'doughnut',
+        data: chartData,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'right'
+            }
+          }
+        }
+      }
+      
+      const chartContext = document.getElementById('chart')//.getContext('2d')
+      donutChart = new Chart(chartContext, config)
+      donutChart.update()
     }
     getHabits()
 
@@ -159,6 +213,7 @@ useEffect(() => {
 
   return (
     <div className='rootAppContainer'>
+
       
       <div className="leftPanel">
         {/* ai genereated summary */}
@@ -168,8 +223,8 @@ useEffect(() => {
 
         {/* user stats */}
         <div className='UserStats'> 
-        <UserStatsList statsData={{'empty': 'for now'}}/>
-      </div>
+          <canvas id='chart'> </canvas>
+        </div>
       </div>
       
 
@@ -186,8 +241,8 @@ useEffect(() => {
       
       {/* right panel */}
       <div className='ButtonContainer'>
-          <div className='ShrinkButtonContainer'>
-          </div>
+          
+
 
           {/* top right navigation panel */}
           <div className='createHabitContainer'>
@@ -202,52 +257,76 @@ useEffect(() => {
             <div className='createHabitButton' onClick={onOpen}>
                 +  
                 <Modal initialFocusRef={initialModalRef} finalFocusRef={finalModalRef} isOpen={isOpen} onClose={onClose}>
-                  <ModalOverlay />
-                  <ModalContent>
-                    <ModalHeader>Create your account</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody pb={6}>
+                  
+                  <div className='modalContent'>
+                    <div className="topModalContain">
+                        <div className='Title'>Create your account</div>
+                        <div className='close' onClick={onClose}>
+                          X
+                        </div>
+                    </div>
+                    
+                    <div className='modalBody'>
                       <form id='new-habit-form'
+                        
                         onSubmit={addHabit}>
+                        <div className="inputFormContain">
+                        <div className='inputForm'>
+                          <div className="sub-title">What is your goal?</div>
+                          <input ref={habitNameRef} placeholder='ex: get an A on 6B exam...' />
+                        </div>
 
-                        <FormControl>
-                          <FormLabel>Habit Name</FormLabel>
-                          <Input ref={habitNameRef} placeholder='Habit name' />
-                        </FormControl>
+                        <div className='inputForm'>
+                          <div className="sub-title">Habit type</div>
+                            <select ref={habitTypeRef} className='dropDown'>
+                              <option>
+                                <div className="optionContain">
+                                  <img src={socialIcon}/>
+                                  <p>💬  social</p>
+                                </div>
+                            
+                              </option>
+                              <option>📖  academic</option>
+                              <option>💗  personal</option>
+                            </select>
+                        </div>
 
-                        <FormControl>
-                          <FormLabel>Habit Type</FormLabel>
-                          <select ref={habitTypeRef}>
-                            <option>social</option>
-                            <option>academic</option>
-                            <option>personal</option>
-                          </select>
-                        </FormControl>
+                        <div className='inputForm'>
+                        <div className="sub-title">Timeframe</div>
+                          {/* ``pscyh trick */}
+                          <div className="pyschContain">
 
-                        <FormControl mt={4}>
-                          <FormLabel>Frequency</FormLabel>
-                          <select ref={habitFrequencyRef}>
+                            <div className="topPsychContain">
+                              <img src={magic}/>
+                              <div className="sub-title">Psychology Trick</div>
+                            </div>
+                      
+                            <p>We recommend that you schedule your study habits in an exponential
+                               interval based on the forgetting curve. Start with daily and move to weekly.
+                            </p>
+                          </div>
+                          <select ref={habitFrequencyRef} className='dropDown'>
                             <option>daily</option>
                             <option>weekly</option>
                           </select>
-                        </FormControl>
+                        </div>
 
-                        <FormControl mt={4}>
-                          <FormLabel>Description</FormLabel>
-                          <Input ref={habitDescriptionRef} placeholder='Description' />
-                        </FormControl>
+                        <div className='inputForm Long'>
+                          <div className="sub-title">Why do you want to achieve this goal?</div>
+                          <textarea type = "text" ref={habitDescriptionRef} placeholder='ex: I want to land a job at Meta...' />
+                        </div>
+
+                        </div>
+                      
 
                       </form>
-                    
-                     </ModalBody>
 
-                    <ModalFooter>
-                      <Button type="submit" form="new-habit-form" colorScheme='blue' mr={3}>
+                      <button type="submit" form="new-habit-form">
                         Save
-                      </Button>
-                      <Button onClick={onClose}>Cancel</Button>
-                    </ModalFooter>
-                  </ModalContent>
+                      </button>
+                     </div>
+                  </div>
+                  <div className="overlay"></div>
                 </Modal>
 
             </div>
