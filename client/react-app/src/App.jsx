@@ -40,9 +40,6 @@ function GetDataTest() {
   )
 }
 
-
-
-
 //core of the user-facing interface
 function App() {
   const [showPanels, setShowPanels] = useState(true)
