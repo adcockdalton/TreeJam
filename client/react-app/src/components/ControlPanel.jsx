@@ -1,6 +1,6 @@
 import react, {useState} from 'react';
 import ControlPanelButton from './ControlPanelButton';
-import academics from './images/academics.png'
+import academics from '../images/academics.png'
 
 export default function ControlPanel( { setShowPanels } ) {
 
