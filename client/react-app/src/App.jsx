@@ -9,6 +9,12 @@ import deadTree from './images/deadTree.svg';
 import TextGenerator from './components/TextGenerator';
 import anteater from './images/anteater-removebg-preview.png'
 import settings from './images/settings.png'
+import academicsIcon from './images/academicsIcon.png'
+import socialIcon from './images/socialIcon.png'
+import personalIcon from './images/personalIcon.png'
+import magic from './images/magic.png'
+
+
 import {
   Modal,
   ModalOverlay,
@@ -143,52 +149,82 @@ function App() {
             <div className='createHabitButton' onClick={onOpen}>
                 +  
                 <Modal initialFocusRef={initialModalRef} finalFocusRef={finalModalRef} isOpen={isOpen} onClose={onClose}>
-                  <ModalOverlay />
-                  <ModalContent>
-                    <ModalHeader>Create your account</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody pb={6}>
+                  
+                  <div className='modalContent'>
+                    <div className="topModalContain">
+                        <div className='Title'>Create your account</div>
+                        <div className='close' onClick={onClose}>
+                          X
+                        </div>
+                    </div>
+                    
+                    <div className='modalBody'>
                       <form id='new-habit-form'
+                        
                         onSubmit={addHabit}>
+                        <div className="inputFormContain">
+                        <div className='inputForm'>
+                          <div className="sub-title">What is your goal?</div>
+                          <input ref={habitNameRef} placeholder='ex: get an A on 6B exam...' />
+                        </div>
 
-                        <FormControl>
-                          <FormLabel>Habit Name</FormLabel>
-                          <Input ref={habitNameRef} placeholder='Habit name' />
-                        </FormControl>
+                        <div className='inputForm'>
+                          <div className="sub-title">Habit type</div>
+                            <select ref={habitTypeRef} className='dropDown'>
+                              <option>
+                                <div className="optionContain">
+                                  <img src={socialIcon}/>
+                                  <p>💬  social</p>
+                                </div>
+                            
+                              </option>
+                              <option>📖  academic</option>
+                              <option>💗  personal</option>
+                            </select>
+                        </div>
 
-                        <FormControl>
-                          <FormLabel>Habit Type</FormLabel>
-                          <select ref={habitTypeRef}>
-                            <option>social</option>
-                            <option>academic</option>
-                            <option>personal</option>
-                          </select>
-                        </FormControl>
+                        <div className='inputForm'>
+                        <div className="sub-title">Timeframe</div>
+                          {/* ``pscyh trick */}
+                          <div className="pyschContain">
 
-                        <FormControl mt={4}>
-                          <FormLabel>Frequency</FormLabel>
-                          <select ref={habitFrequencyRef}>
+                            <div className="topPsychContain">
+                              <img src={magic}/>
+                              <div className="sub-title">Psychology Trick</div>
+                            </div>
+                      
+                            <p>We recommend that you schedule your study habits in an exponential
+                               interval based on the forgetting curve. Start with daily and move to weekly.
+                            </p>
+                          </div>
+                          <select ref={habitFrequencyRef} className='dropDown'>
                             <option>daily</option>
                             <option>weekly</option>
                           </select>
-                        </FormControl>
+                        </div>
 
-                        <FormControl mt={4}>
-                          <FormLabel>Description</FormLabel>
-                          <Input ref={habitDescriptionRef} placeholder='Description' />
-                        </FormControl>
+                        <div className='inputForm Long'>
+                          <div className="sub-title">Why do you want to achieve this goal?</div>
+                          <textarea type = "text" ref={habitDescriptionRef} placeholder='ex: I want to land a job at Meta...' />
+                        </div>
+
+                        </div>
+                      
 
                       </form>
-                    
-                     </ModalBody>
 
-                    <ModalFooter>
-                      <Button type="submit" form="new-habit-form" colorScheme='blue' mr={3}>
+                      <button type="submit" form="new-habit-form">
                         Save
-                      </Button>
-                      <Button onClick={onClose}>Cancel</Button>
-                    </ModalFooter>
-                  </ModalContent>
+                      </button>
+
+                     </div>
+
+                    
+                      
+                      
+                   
+                  </div>
+                  <div className="overlay"></div>
                 </Modal>
 
             </div>

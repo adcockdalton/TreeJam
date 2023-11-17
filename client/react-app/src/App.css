@@ -78,7 +78,14 @@
   grid-template-columns: 1fr;
   display: grid;
   grid-gap: 12px;
-  width: 300px;
+  width: 400px;
+}
+
+.leftPanel {
+  grid-template-columns: 1fr;
+  display: grid;
+  grid-gap: 12px;
+  width: 400px;
 }
 
 .HabitList {
