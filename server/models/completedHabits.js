@@ -1,8 +1,8 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose';
 
 const completedHabits = new mongoose.Schema({
     completedHabits: Object
-})
- 
-module.exports = mongoose.model('completedHabits', completedHabits)
+});
+
+export default mongoose.model('completedHabits', completedHabits);
 

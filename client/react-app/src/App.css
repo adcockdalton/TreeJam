@@ -25,7 +25,9 @@
     'suggestion tree tree tree habitList'
     'suggestion tree tree tree habitList'
     'userStats bottomPanel bottomPanel bottomPanel habitList'
-    'userStats bottomPanel bottomPanel bottomPanel habitList';
+    'userStats bottomPanel bottomPanel bottomPanel habitList'
+    'textGenerator textGenerator textGenerator textGenerator textGenerator'; /* Added line */
+    grid-template-rows: auto auto auto auto auto auto auto 1fr; /* Adjust the number of 'auto' to match your actual rows */;
   width: 100%;
   height: 100vh;
   grid-gap: 10px;
@@ -75,6 +77,19 @@
   grid-area: habitList;
   /* border: 2px solid orange; */
 
+}
+
+.textGeneratorSection {
+  grid-area: textGenerator; /* Assign the section to the grid area */
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.textGeneratorSection h2 {
+  margin-bottom: 10px;
 }
 
 /* 

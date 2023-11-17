@@ -1,41 +1,45 @@
-// Node backend
+// Importing necessary modules
+import dotenv from 'dotenv'
+import mongoose from 'mongoose'
+import cors from 'cors'
+import express from 'express'
+import completedHabits from './models/CompletedHabits.js'
+import currentHabits from './models/currentHabits.js'
+import OpenAI from 'openai'
 
-const PORT = 3001
-const mongoose = require('mongoose')
-const cors = require('cors')
-const express = require('express')
+// Configuring dotenv
+dotenv.config();
 
-const app = express()
-app.use(cors())
-app.use(express.json())
+const PORT = 3001;
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-// load mongoose schema models
-const completedHabits = require('./models/completedHabits')
-const currentHabits = require('./models/currentHabits')
-
-// connect to databse
+// MongoDB connection
 mongoose.connect('mongodb+srv://shalder:rishi1105@treejam.p584kjj.mongodb.net/?retryWrites=true&w=majority', {
-    useNewUrlParser: true
-})
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 
-const db = mongoose.connection
-db.on('error', (error) => console.error(error))
-db.once('open', () => {
-    console.log('connected to database')
-})
+const db = mongoose.connection;
+db.on('error', error => console.error(error));
+db.once('open', () => console.log('Connected to database'));
 
-// API endpoint to get the user's currently active habits (daily/weekly)
+// OpenAI client initialization
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
+
+// API endpoints
 app.get("/current-habits", async (req, res) => {
     try {
-        console.log('getting habits')
-        const habits = await currentHabits.find()
-        console.log(habits)
-        res.json(habits)
+        const habits = await currentHabits.find();
+        res.json(habits);
     } catch (err) {
-        res.status(500).json({message:err.message})
+        res.status(500).json({ message: err.message });
     }
-})
+});
 
 // Adds habit to requested habit type and frequency
 // For weekly activities, the scheduled day is the current day of the week
@@ -164,10 +168,33 @@ app.put("/add-completed-habit", async (req, res) => {
     }
 })
 
-app.listen(PORT, () => {
-    console.log('server running')
-})
+// app.listen(PORT, () => {
+//     console.log('server running')
+// })
 
 app.get("/test", (req, res) => {
     res.json({message: "Hello World!"})
 })
+
+
+app.post('/generate-text', async (req, res) => {
+    const prompt = req.body.prompt;
+
+    try {
+        const response = await openai.completions.create({
+            model: "text-davinci-003",
+            prompt: prompt,
+            max_tokens: 150,
+          });
+          console.log(response);
+        res.json({ response: response.choices[0].text.trim() });
+    } catch (error) {
+        console.error('Error calling OpenAI API:', error);
+        res.status(500).send('Error generating text');
+    }
+});
+
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

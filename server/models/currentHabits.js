@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose';
 
 const currentHabitsSchema = new mongoose.Schema({
     social: {
@@ -13,6 +13,6 @@ const currentHabitsSchema = new mongoose.Schema({
         daily: Array,
         weekly: Array
     }
-})
+});
 
-module.exports = mongoose.model('currentHabits', currentHabitsSchema, 'currentHabits')
+export default mongoose.model('currentHabits', currentHabitsSchema, 'currentHabits');
