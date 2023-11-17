@@ -27,6 +27,8 @@ export default function SuggestionList( { formattedSuggestions } ) {
     return (
         <>  
             <div className='fullSuggestionContainer'>
+            
+  
                 <div className="upperTextContain">
                     <div className="AIgen">
                         <img src={magic}/>
